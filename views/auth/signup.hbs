@@ -2,10 +2,7 @@
 
 <form method="POST" action="/signup">
   <label>User name</label>
-  <input type="text" name="name" placeholder="Enter your name here"  >
-<br>
-  <label>Email</label>
-  <input type="text" name="email" placeholder="Enter your email here"  >
+  <input type="text" name="username" placeholder="Enter your name here"  >
 <br>
   <label>Password</label>
   <input type="password" name="password" placeholder="Enter your password"  >
@@ -16,4 +13,11 @@
   <button>Sign Up</button>
 </form>
 
+{{#if error}}
+<p class="error">{{error}}</p>
+
+{{/if}}
+
 <img src="https://pblog.hertz.com/wp-content/uploads/2017/04/img-lrg-flyfishing.jpg" alt="">
+
+

@@ -12,10 +12,6 @@ const userSchema = new Schema({
     required : true
  
   },
-  email:{
-    type : String,
-    required : true
-  },
   favoritefish:{
     type : String,
     required : true
