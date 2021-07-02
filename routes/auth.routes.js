@@ -46,10 +46,16 @@ router.post("/login", (req, res, next) => {
 
   UserModel.findOne({ username })
     .then((user) => {
+      if(user){
       let isValide = bcrypt.compareSync(password, user.password);
       if (isValide) {
-        res.redirect("/profile");
-      }
+        res.redirect("/profile",);
+      }else{res.render("./auth/login.hbs", {
+        error:
+          "Invalid password"
+      });}
+      
+    }
     })
     .catch((err) => {
       next(err);
