@@ -49,21 +49,28 @@ router.post("/login", (req, res, next) => {
       if(user){
       let isValide = bcrypt.compareSync(password, user.password);
       if (isValide) {
+
+        req.session.loggedInUser = user
+        req.app.locals.isLoggedIn = true;
         res.redirect("/profile",);
       }else{res.render("./auth/login.hbs", {
         error:
           "Invalid password"
       });}
       
-    }
+    }else{res.render("./auth/login.hbs",{error:"No user"})}
     })
     .catch((err) => {
       next(err);
     });
 });
 
-router.get("/profile", (req, res, next) => {
-  res.render("./auth/profile.hbs");
-});
-
+router.get('/profile', (req,res,nex)=>{
+  if( req.session.loggedInUser){
+  res.render('main/profile.hbs',{ name : req.session.loggedInUser.username})
+  }
+  else{
+      res.redirect('/signin')
+  }
+})
 module.exports = router;
