@@ -4,7 +4,7 @@ const router = require("express").Router();
 router.get("/login", (req, res, next) => {
   res.render("./auth/login.hbs");
 });
-
+  
 router.get("/signup", (req, res, next) => {
     res.render("./auth/signup.hbs");
   });

@@ -5,15 +5,6 @@ const userSchema = new Schema({
   username: {  
     type: String,
     unique: true,
-<<<<<<< HEAD
-    required: true,
-  },
-
-  password: {
-    type: String,
-    required: true,
-  }  
-=======
     require: true,
   },
   password: {
@@ -25,7 +16,6 @@ const userSchema = new Schema({
     type : String,
     required : true
   }
->>>>>>> f32b62cab81abaf9ceab49c4a22004d0cc0f776d
 });
 
 const User = model("User", userSchema);
