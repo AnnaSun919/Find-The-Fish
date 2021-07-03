@@ -3,14 +3,22 @@
 
 <div class="homeimg">
 
+    <p class="welcome">Welcome to Find a Fish. </p>
 </div>
+
+<p class="subtitle">Top 5 Fish</p>
 <div class="fishcontainer">
-  {{#each fish}}
-    <a href="/fish/{{this._id}}">
-      <img class="fishphoto" src="{{this.speciesIllustrationPhoto}}" alt="" />
-    </a>
 
-  {{/each}}
+
+    {{#each fish}}
+    <a href="/fish/{{this._id}}">
+        <img class="fishphoto" src="{{this.speciesIllustrationPhoto}}" alt="" />
+    </a>
+    {{/each}}
+
+
 
 </div>
+
+<p class="subtitle">Top 5 Fish Recipes</p>
 <p>To know more, please <a href="/signup">Sign up</a></p>
