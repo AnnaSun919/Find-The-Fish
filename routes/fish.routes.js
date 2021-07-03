@@ -2,16 +2,18 @@ const router = require("express").Router();
 const axios = require("axios");
 const FishModel = require("../models/Fish.model");
 
-router.get("/fish", (req, res, next) => {
+router.get("/fishdetails", (req, res, next) => {
   const json = JSON.stringify(req.query);
   console.log(`hihi  ${json}`);
   axios
     .get(`https://www.fishwatch.gov/api/species`)
     .then((response) => {
       let listoffish = response.data;
-      let fishphoto = listoffish[0]["Species Illustration Photo"].src;
+      let fishphoto = listoffish[1]["Species Illustration Photo"].src;
+      let scientificName = listoffish[1]["Scientific Name"];
+      console.log(listoffish);
 
-      res.render("main/fish.hbs", { fishphoto });
+      res.render("main/fish.hbs", { fishphoto, scientificName });
 
       // FishModel.create({
       //   habitat: listoffish[0].Habitat,
