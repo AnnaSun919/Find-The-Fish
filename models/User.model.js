@@ -12,10 +12,6 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  favoriteFish: {
-    ref: "Fish",
-    type: Schema.Types.ObjectId,
-  },
 });
 
 const User = model("User", userSchema);

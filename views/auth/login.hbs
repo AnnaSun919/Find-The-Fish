@@ -2,17 +2,21 @@
 
 <form method="POST" action="/login">
   <label>User name</label>
-  <input type="text" name="username" placeholder="Enter your name here"  >
-<br>
+  <input type="text" name="username" placeholder="Enter your name here" />
+  <br />
   <label>Password</label>
-  <input type="password" name="password" placeholder="Enter your password"  >
-<br>
+  <input type="password" name="password" placeholder="Enter your password" />
+  <br />
 
-  <button type="button" class="btn btn-secondary">Log in</button>
+  <button>Log in</button>
 </form>
+
 {{#if error}}
-<p class="error">{{error}}</p>
+  <p class="error">{{error}}</p>
 
 {{/if}}
-<img class="signInimg" src="https://www.sportfishingdalsland.com/uploads/7/0/2/9/7029564/published/img-7173_1.jpg?1547323488" alt="">
-
+<img
+  class="signInimg"
+  src="https://www.sportfishingdalsland.com/uploads/7/0/2/9/7029564/published/img-7173_1.jpg?1547323488"
+  alt=""
+/>

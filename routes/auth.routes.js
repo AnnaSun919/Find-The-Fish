@@ -12,9 +12,9 @@ router.get("/signup", (req, res, next) => {
 });
 
 router.post("/signup", (req, res, next) => {
-  const { username, password, favoritefish } = req.body;
+  const { username, password } = req.body;
 
-  if (!username || !password || !favoritefish) {
+  if (!username || !password) {
     res.render("auth/signup.hbs", { error: "Please enter all fields" });
     //to tell JS to come our off this function
     return;
@@ -62,15 +62,16 @@ router.post("/login", (req, res, next) => {
       }
     })
     .catch((err) => {
+      console.log(err);
       next(err);
     });
 });
 
-router.get("/profile", (req, res, nex) => {
-  if (req.session.loggedInUser) {
-    res.render("main/profile.hbs", { name: req.session.loggedInUser.username });
-  } else {
-    res.redirect("/signin");
-  }
+router.get("/logout", (req, res, nex) => {
+  req.session.destroy();
+
+  req.app.locals.isLoggedIn = false;
+  res.redirect("/");
 });
+
 module.exports = router;

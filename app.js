@@ -54,6 +54,9 @@ app.use("/", auth);
 const fish = require("./routes/fish.routes");
 app.use("/", fish);
 
+const main = require("./routes/main.routes");
+app.use("/", main);
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 

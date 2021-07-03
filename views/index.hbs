@@ -1,11 +1,16 @@
 <h1>{{title}} 🚀</h1>
 <p>Welcome Ironhacker!</p>
-<a href="/signup">
-  <button type="button" class="btn btn-secondary">Sign up</button></a>
-<a href="/login">
-  <button type="button" class="btn btn-secondary">Log in</button></a>
+
 <div class="homeimg">
 
 </div>
+<div class="fishcontainer">
+  {{#each fish}}
+    <a href="/fish/{{this._id}}">
+      <img class="fishphoto" src="{{this.speciesIllustrationPhoto}}" alt="" />
+    </a>
 
+  {{/each}}
+
+</div>
 <p>To know more, please <a href="/signup">Sign up</a></p>

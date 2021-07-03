@@ -3,4 +3,7 @@
 
 
     <a href="fish/{{scientificName}}">
-      <img src="{{fishphoto}}">
+    {{#each fishphoto}}
+      <img src="{{this.src}}">
+
+      {{/each}}
