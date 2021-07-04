@@ -9,7 +9,7 @@ router.get("/", (req, res, next) => {
       res.render("index", { fish });
     })
     .catch((err) => {
-      next("BB fetch failed: " + err);
+      next("fish fetch failed: " + err);
     });
 });
 
