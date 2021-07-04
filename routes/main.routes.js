@@ -56,8 +56,8 @@ router.get("/search", (req, res, next) => {
   }
 });
 
-router.get("/fish/createfirsh", (req, res, next) => {
-  res.render("main/fishdetails.hbs");
+router.get("/createfish", (req, res, next) => {
+  res.render("main/createfish.hbs");
 });
 
 module.exports = router;

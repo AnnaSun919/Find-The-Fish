@@ -51,9 +51,6 @@ app.use("/", index);
 const auth = require("./routes/auth.routes");
 app.use("/", auth);
 
-const fish = require("./routes/fish.routes");
-app.use("/", fish);
-
 const main = require("./routes/main.routes");
 app.use("/", main);
 
