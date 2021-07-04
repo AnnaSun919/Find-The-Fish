@@ -46,6 +46,10 @@ h1 {
 
 }
 
+.fishphoto:hover{
+  transform:scale(1.05,1.05);
+  }
+
 
 .fishcontainer {
   display: flex;

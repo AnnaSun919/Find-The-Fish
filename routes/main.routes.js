@@ -3,12 +3,28 @@ let UserModel = require("../models/User.model");
 let FishModel = require("../models/Fish.model");
 
 //asscess profile
-router.get("/profile", (req, res, nex) => {
-  if (req.session.loggedInUser) {
-    res.render("main/profile.hbs", { name: req.session.loggedInUser.username });
-  } else {
-    res.redirect("/login");
-  }
+
+const loginCheck = () => {
+  return (req, res, next) => {
+    if (req.session.loggedInUser) {
+      next();
+    } else {
+      res.redirect("/login");
+    }
+  };
+};
+
+router.get("/profile", loginCheck(), (req, res, nex) => {
+  let name = req.session.loggedInUser.username;
+
+  FishModel.find({})
+    .populate("userId")
+    .then((fish) => {
+      res.render("main/profile.hbs", { name });
+    })
+    .catch((err) => {
+      next(err);
+    });
 });
 //home page displaying six fish
 router.get("/fish/:id", (req, res, next) => {
@@ -56,8 +72,38 @@ router.get("/search", (req, res, next) => {
   }
 });
 
-router.get("/createfish", (req, res, next) => {
+router.get("/createfish", loginCheck(), (req, res) => {
   res.render("main/createfish.hbs");
+});
+
+router.post("/createfish", (req, res, next) => {
+  const {
+    habitat,
+    location,
+    population,
+    scientificName,
+    speciesIllustrationPhoto,
+    speciesName,
+    biology,
+  } = req.body;
+
+  const fisher = req.session.loggedInUser._id;
+  FishModel.create({
+    habitat,
+    location,
+    population,
+    scientificName,
+    speciesIllustrationPhoto,
+    speciesName,
+    biology,
+    fisher,
+  })
+    .then(() => {
+      res.render("main/createfish.hbs");
+    })
+    .catch(() => {
+      next();
+    });
 });
 
 module.exports = router;
