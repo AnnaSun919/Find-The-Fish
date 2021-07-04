@@ -2,22 +2,21 @@
 
 <form method="POST" action="/signup">
   <label>User name</label>
-  <input type="text" name="username" placeholder="Enter your name here"  >
-<br>
+  <input type="text" name="username" placeholder="Enter your name here" />
+  <br />
   <label>Password</label>
-  <input type="password" name="password" placeholder="Enter your password"  >
-<br>
-   <label>Favorite Fish</label>
-  <input type="text" name="favoritefish" placeholder="Enter your favortie fish " >
-  <br>
-  <button>Sign Up</button>
+  <input type="password" name="password" placeholder="Enter your password" />
+  <br />
+
+  <button>Sign up</button>
 </form>
 
 {{#if error}}
-<p class="error">{{error}}</p>
+  <p class="error">{{error}}</p>
 
 {{/if}}
 
-<img src="https://pblog.hertz.com/wp-content/uploads/2017/04/img-lrg-flyfishing.jpg" alt="">
-
-
+<img
+  src="https://pblog.hertz.com/wp-content/uploads/2017/04/img-lrg-flyfishing.jpg"
+  alt=""
+/>

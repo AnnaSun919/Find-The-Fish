@@ -1,7 +1,6 @@
 body {
-  padding: 20px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #00b7ff;
+  background-color: white;
 }
 
 a {
@@ -12,13 +11,107 @@ h1 {
   color: 15px;
 }
 
-
-.signInimg{
+.signInimg {
   height: 300px;
   width: 400px;
 }
 
-.homeimg{
-  width: 1350px;
-  height: 400px;
+.homeimg {
+  background-image: url(https://static1.squarespace.com/static/5400dd5fe4b0cb1fd47c9616/t/54cb9e5ce4b08461354d1549/1422630493326/banner.jpg?format=2500w);
+  background-size: cover;
+  height: 470px;
+  display: flex;
+  align-items: center;
+}
+.welcome{  
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.fishphoto {
+  /* background-image: url(https://fendro.files.wordpress.com/2013/11/2013-11-01_c1_john-erlend_id02.jpg); */
+  margin: 10px;
+  border: black;
+  background-color:white;
+  height: 200px;
+  width: 400px;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 50px;
+  box-shadow: 2px 2px;
+  box-shadow:
+  inset 0 -3em 3em rgba(0,0,0,0.1),
+        0 0  0 2px rgb(255,255,255),
+        0.3em 0.3em 1em rgba(0,0,0,0.3);
+
+}
+
+
+.fishcontainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-left: 20px;
+}
+.bigfishphoto{
+  height: 500px;
+  width: 1000px;
+}
+
+.subtitle{
+  margin-top: 20px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.fishsearch1 {
+  margin-left: 50px;
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 50%;
+  height: 5%;
+  background: #f1f1f1;
+}
+#fishorreceipe{
+  float: left;
+  width: 5%;
+  height: 5%;
+  padding: 10px;
+
+  color: white;
+  font-size: 10px;
+  border: 1px solid grey;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+}
+.fishsearchbutton{
+    float: left;
+    width: 5%;
+    height: 5%;
+    padding: 10px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none; /* Prevent double borders */
+    cursor: pointer;
+}
+
+form.fishsearch button:hover {
+  background: #0b7dda;
+}
+
+form.fishsearch::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.createfishform{
+  margin-left: 30px;
+  max-width: 500px;
+
 }

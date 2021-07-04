@@ -1,0 +1,21 @@
+<h1>Search result</h1>
+
+
+<div class="fishcontainer"></div>
+{{#each fish }}
+
+
+<a href="/fish/{{this._id}}">
+  <img class="fishphoto" src="{{this.speciesIllustrationPhoto}}" alt="">
+</a>
+
+
+
+{{/each}}
+
+</div>
+
+{{#if error}}
+<p class="error">{{error}}<a href="/createfish">Creating Fish</a></p>
+<a href=""></a>
+{{/if}}

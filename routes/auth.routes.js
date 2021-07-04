@@ -6,15 +6,15 @@ let UserModel = require("../models/User.model");
 router.get("/login", (req, res, next) => {
   res.render("./auth/login.hbs");
 });
-  
+
 router.get("/signup", (req, res, next) => {
   res.render("./auth/signup.hbs");
 });
 
 router.post("/signup", (req, res, next) => {
-  const { username, password, favoritefish } = req.body;
+  const { username, password } = req.body;
 
-  if (!username || !password || !favoritefish) {
+  if (!username || !password) {
     res.render("auth/signup.hbs", { error: "Please enter all fields" });
     //to tell JS to come our off this function
     return;
@@ -34,7 +34,7 @@ router.post("/signup", (req, res, next) => {
   const salt = bcrypt.genSaltSync(10);
   const hash = bcrypt.hashSync(password, salt);
 
-  UserModel.create({ username, password: hash, favoritefish })
+  UserModel.create({ username, password: hash })
     .then(() => res.redirect("/"))
     .catch((err) => {
       next(err);
@@ -42,35 +42,36 @@ router.post("/signup", (req, res, next) => {
 });
 
 router.post("/login", (req, res, next) => {
-  const { username, password, favoritefish } = req.body;
+  const { username, password } = req.body;
 
   UserModel.findOne({ username })
     .then((user) => {
-      if(user){
-      let isValide = bcrypt.compareSync(password, user.password);
-      if (isValide) {
-
-        req.session.loggedInUser = user
-        req.app.locals.isLoggedIn = true;
-        res.redirect("/profile",);
-      }else{res.render("./auth/login.hbs", {
-        error:
-          "Invalid password"
-      });}
-      
-    }else{res.render("./auth/login.hbs",{error:"No user"})}
+      if (user) {
+        let isValide = bcrypt.compareSync(password, user.password);
+        if (isValide) {
+          req.session.loggedInUser = user;
+          req.app.locals.isLoggedIn = true;
+          res.redirect("/profile");
+        } else {
+          res.render("./auth/login.hbs", {
+            error: "Invalid password",
+          });
+        }
+      } else {
+        res.render("./auth/login.hbs", { error: "No user" });
+      }
     })
     .catch((err) => {
+      console.log(err);
       next(err);
     });
 });
 
-router.get('/profile', (req,res,nex)=>{
-  if( req.session.loggedInUser){
-  res.render('main/profile.hbs',{ name : req.session.loggedInUser.username})
-  }
-  else{
-      res.redirect('/signin')
-  }
-})
+router.get("/logout", (req, res, nex) => {
+  req.session.destroy();
+
+  req.app.locals.isLoggedIn = false;
+  res.redirect("/");
+});
+
 module.exports = router;

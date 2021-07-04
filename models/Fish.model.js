@@ -1,28 +1,16 @@
-const mongoose = require('mongoose')
+const { Schema, model } = require("mongoose");
 
+const fishSchema = new Schema({
+  habitat: String,
+  habitatImpacts: String,
+  location: String,
+  population: String,
+  scientificName: String,
+  speciesIllustrationPhoto: String,
+  speciesName: String,
+  biology: String,
+});
 
-let habitatImpacts = 'Habitat Impacts';
-let imageGallery = 'Image Gallery'; 
-let scientificName = 'Scientific Name';
-let speciesAliases = 'Species Aliases';
-let speciesIllustrationPhoto = 'Species Illustration Photo';
-let speciesName = 'Species Name';
+const FishModel = model("fish", fishSchema);
 
-
-const FishSchema = new mongoose.Schema({
-Habitat: String,
-habitatImpacts: String,
-imageGallery: String,
-Location: String,
-Population: String,
-scientificName: String,
-speciesAliases: String,
-speciesIllustrationPhoto: String,
-speciesName: String,
-Biology: String,
-
-})
-
-const FishModel = mogoose.model('fish', FishModel)
-
-module.exports = FishModel
+module.exports = FishModel;

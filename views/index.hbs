@@ -1,8 +1,24 @@
 <h1>{{title}} 🚀</h1>
 <p>Welcome Ironhacker!</p>
-<a href="/signup">Sign up</a>
-<a href="/login">Log in</a>
 
-<img class="homeimg"src="https://static1.squarespace.com/static/5400dd5fe4b0cb1fd47c9616/t/54cb9e5ce4b08461354d1549/1422630493326/banner.jpg?format=2500w"
-    alt="" />
-    <br>
+<div class="homeimg">
+
+    <p class="welcome">Welcome to Find a Fish. </p>
+</div>
+
+<p class="subtitle">Top 5 Fish</p>
+<div class="fishcontainer">
+
+
+    {{#each fish}}
+    <a href="/fish/{{this._id}}">
+        <img class="fishphoto" src="{{this.speciesIllustrationPhoto}}" alt="" />
+    </a>
+    {{/each}}
+
+
+
+</div>
+
+<p class="subtitle">Top 5 Fish Recipes</p>
+<p>To know more, please <a href="/signup">Sign up</a></p>
