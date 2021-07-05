@@ -22,18 +22,27 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link active" href="/">Home </a>
+
+      {{#if isLoggedIn}}
       <a class="nav-item nav-link" href="/profile">Profile</a>
       <a class="nav-item nav-link" href="/createfish">Create Fish</a>
+
+
+
+
+
+
       <a href="/logout">
         <button type="button" class="btn btn-primary">Log out</button>
       </a>
+      {{else}}
       <a href="/signup">
         <button type="button" class="btn btn-secondary">Sign up</button>
       </a>
       <a href="/login">
         <button type="button" class="btn btn-success">Log in</button>
       </a>
-
+      {{/if}}
     </div>
   </div>
 </nav>

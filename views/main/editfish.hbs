@@ -1,0 +1,37 @@
+<h2>Edit fish</h2>
+
+
+<form class="createfishform" method="POST" action="/fish/{{fish._id}}/edit">
+
+  <div class="mb-3">
+    <label class="form-label">habitat</label>
+    <input class="form-control" type="text" name="habitat" value="{{fish.habitat}}">
+    <br>
+
+    <label class="form-label">location</label>
+    <input class="form-control" type="text" name="location" value="{{fish.location}}">
+    <br>
+
+    <label class="form-label">population</label>
+    <input class="form-control" type="text" name="population" value="{{fish.population}}">
+    <br>
+
+    <label class="form-label">scientificName</label>
+    <input class="form-control" type="text" name="scientificName" value="{{fish.scientificName}}">
+    <br>
+
+    <label class="form-label">speciesIllustrationPhoto</label>
+    <input class="form-control" type="text" name="speciesIllustrationPhoto" value="{{fish.speciesIllustrationPhoto}}">
+    <br>
+
+    <label class="form-label">Name</label>
+    <input class="form-control" type="text" name="speciesName" value="{{fish.speciesName}}">
+    <br>
+
+    <label class="form-label">biology</label>
+    <input class="form-control" type="text" name="biology" value="{{fish.biology}}">
+    <br>
+    <button class="btn btn-primary" type="submit">SUBMIT</button>
+
+  </div>
+</form>
