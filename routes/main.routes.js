@@ -1,7 +1,6 @@
 const router = require("express").Router();
 let UserModel = require("../models/User.model");
 let FishModel = require("../models/Fish.model");
-const { populate } = require("../models/User.model");
 
 //asscess profile
 

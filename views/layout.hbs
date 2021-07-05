@@ -11,27 +11,47 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
   <link rel="stylesheet" href="/stylesheets/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<section class="head">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="/">Home </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="/">Home </a>
 
+        {{#if isLoggedIn}}
+        <a class="nav-item nav-link" href="/profile">Profile</a>
+        <a class="nav-item nav-link" href="/createfish">Create Fish</a>
+        {{/if}}
+      </div>
+    </div>
+  </nav>
+
+  <div id="searchAndauth">
+    <a href="/">
+      <img class="fishicon" src="https://d29fhpw069ctt2.cloudfront.net/icon/image/49297/preview.svg" alt="">
+    </a>
+    <select class="fishsearchoption" placeholder="Select">
+      <option value="">Please select*</option>
+      <option value="Fish">Fish</option>
+      <option value="Reciept">Reciept</option>
+    </select>
+    <form class="fishsearch" action="/search" method="get">
+      <input class="fishsearch1" type="text" placeholder="Search.." name="searchthefish">
+      <button class="fishsearchbutton" type="submit"><i id="glass" class="fa fa-search"></i></button>
+    </form>
+
+
+
+
+    <div class="authbutton">
       {{#if isLoggedIn}}
-      <a class="nav-item nav-link" href="/profile">Profile</a>
-      <a class="nav-item nav-link" href="/createfish">Create Fish</a>
-
-
-
-
-
-
       <a href="/logout">
         <button type="button" class="btn btn-primary">Log out</button>
       </a>
@@ -39,20 +59,14 @@
       <a href="/signup">
         <button type="button" class="btn btn-secondary">Sign up</button>
       </a>
-      <a href="/login">
-        <button type="button" class="btn btn-success">Log in</button>
+      <a href="/login"> 
+        <buttontype="button" class="btn btn-success">Log in</button>
       </a>
       {{/if}}
     </div>
-  </div>
-</nav>
 
-<div class="searchbar">
-  <form class="fishsearch" action="/search" method="get">
-    <input class="fishsearch1" type="text" placeholder="Search.." name="searchthefish">
-    <button class="fishsearchbutton" type="submit"><i class="fa fa-search"></i></button>
-  </form>
-</div>
+  </div>
+</section>
 
 
 
@@ -69,5 +83,18 @@
     crossorigin="anonymous"></script>
 
 </body>
+
+
+<footer>
+  <div class="footerfish">
+    <img id="footerfishpic"
+      src="https://www.logosc.cn/uploads/icon/2019/06/05//6d8ca6cd-783d-4119-9cdf-4dbf9626ded7.png" alt="fishlogo">
+
+  </div>
+  <p>connet people with nature</p>
+  <a href="/generalinfo">General information</a>
+  <a href="/generalinfo">Aboutus</a>
+  <p></p>
+</footer>
 
 </html>

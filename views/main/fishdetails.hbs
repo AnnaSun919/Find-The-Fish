@@ -1,20 +1,20 @@
 <h1>Name : {{fish.speciesName}}</h1>
 <div class="button" role="group" aria-label="Basic outlined example">
-
   <div class="editanddeletebutton">
     {{#if isCreator}}
     <form action="/fish/{{fish._id}}/edit" method="GET">
-      <button id="btn" class="btn btn-danger">Edit</button>
+      <button id="btn2" class="btn btn-danger">Edit</button>
     </form>
 
     <form action="/fish/{{fish._id}}/delete" method="POST">
-      <button id="btn" class="btn btn-danger">Delete</button>
+      <button id="btn1" class="btn btn-danger">Delete</button>
     </form>
     {{/if}}
 
   </div>
 
-  <img class="bigfishphoto" src="{{fish.speciesIllustrationPhoto}}" alt="fish" />
+  <aside> <img class="bigfishphoto" src="{{fish.speciesIllustrationPhoto}}" alt="fish" /></aside>
+
   <p>Location : {{{fish.location}}}</p>
   <p>Biology : {{{fish.biology}}} </p>
 
