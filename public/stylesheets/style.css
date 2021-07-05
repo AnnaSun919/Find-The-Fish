@@ -23,7 +23,8 @@ h1 {
   display: flex;
   align-items: center;
 }
-.welcome{  
+
+.welcome {
   font-size: 50px;
   font-weight: bold;
 }
@@ -32,7 +33,7 @@ h1 {
   /* background-image: url(https://fendro.files.wordpress.com/2013/11/2013-11-01_c1_john-erlend_id02.jpg); */
   margin: 10px;
   border: black;
-  background-color:white;
+  background-color: white;
   height: 200px;
   width: 400px;
   border-style: solid;
@@ -40,15 +41,15 @@ h1 {
   border-radius: 50px;
   box-shadow: 2px 2px;
   box-shadow:
-  inset 0 -3em 3em rgba(0,0,0,0.1),
-        0 0  0 2px rgb(255,255,255),
-        0.3em 0.3em 1em rgba(0,0,0,0.3);
+    inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+    0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 
 }
 
-.fishphoto:hover{
-  transform:scale(1.03,1.03);
-  }
+.fishphoto:hover {
+  transform: scale(1.03, 1.03);
+}
 
 
 .fishcontainer {
@@ -58,12 +59,13 @@ h1 {
   flex-wrap: wrap;
   margin-left: 20px;
 }
-.bigfishphoto{
+
+.bigfishphoto {
   height: 500px;
   width: 1000px;
 }
 
-.subtitle{
+.subtitle {
   margin-top: 20px;
   font-size: 30px;
   font-weight: bold;
@@ -79,7 +81,8 @@ h1 {
   height: 5%;
   background: #f1f1f1;
 }
-#fishorreceipe{
+
+#fishorreceipe {
   float: left;
   width: 5%;
   height: 5%;
@@ -88,20 +91,23 @@ h1 {
   color: white;
   font-size: 10px;
   border: 1px solid grey;
-  border-left: none; /* Prevent double borders */
+  border-left: none;
+  /* Prevent double borders */
   cursor: pointer;
 }
-.fishsearchbutton{
-    float: left;
-    width: 5%;
-    height: 5%;
-    padding: 10px;
-    background: #2196F3;
-    color: white;
-    font-size: 17px;
-    border: 1px solid grey;
-    border-left: none; /* Prevent double borders */
-    cursor: pointer;
+
+.fishsearchbutton {
+  float: left;
+  width: 5%;
+  height: 5%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  /* Prevent double borders */
+  cursor: pointer;
 }
 
 form.fishsearch button:hover {
@@ -114,7 +120,7 @@ form.fishsearch::after {
   display: table;
 }
 
-.createfishform{
+.createfishform {
   margin-left: 30px;
   max-width: 500px;
 

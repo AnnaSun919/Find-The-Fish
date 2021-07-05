@@ -10,57 +10,30 @@ let RecipeModel = require("../models/Recipe.model");
     res.render("main/addrecipe.hbs");
   });
   
-//   router.post("/addrecipe", (req, res, next) => {
-//     const {
-//    title,
-//    prepTime,
-//    cookTime,
-//    servings,
-//    ingredients,
-//    instructions,
-//     } = req.body;
+  router.post("/addrecipe", (req, res, next) => {
+    const {
+   title,
+   ingredients,
+   instructions,
+
+    } = req.body;
    
   
-//     const recipe = req.session.loggedInUser._id;
-//     RecipeModel.create({
-//         title,
-//         prepTime,
-//         cookTime,
-//         servings,
-//         ingredients,
-//         instructions,
-//     })
-//       .then(() => {
-//         res.render("main/addrecipe.hbs");
-//       })
-//       .catch(() => {
-//         next();
-//       });
-//   });
+    const recipe = req.session.loggedInUser._id;
+    RecipeModel.create({
+        title,
+        ingredients,
+        instructions,
+        recipe,
+    })
+      .then(() => {
+        res.render("main.hbs");
+      })
+      .catch(() => {
+        next("failed to save recipe");
+      });
+  });
 
 
 
-
-
-
-  
-// //     const fisher = req.session.loggedInUser._id;
-// //     FishModel.create({
-// //       habitat,
-// //       location,
-// //       population,
-// //       scientificName,
-// //       speciesIllustrationPhoto,
-// //       speciesName,
-// //       biology,
-// //       fisher,
-// //     })
-// //       .then(() => {
-// //         res.render("main/createfish.hbs");
-// //       })
-// //       .catch(() => {
-// //         next();
-// //       });
-// //   });
-  
   module.exports = router;

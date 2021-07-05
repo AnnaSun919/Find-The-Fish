@@ -3,29 +3,21 @@
 
 <form class="addrecipeform" method="POST" action="/addrecipe">
 
+
+
+
     <div class="mb-3">
-        <label class="form-label">title</label>
+        <label class="form-label">Title</label>
         <input class="form-control" type="text" name="title">
         <br>
 
-        <label class="form-label">prep time</label>
-        <input class="form-control" type="text" name="prepTime">
-        <br>
+        <label class="form-label">Ingredients</label>
+        <textarea rows="5" cols="60" name="ingredients">
+         </textarea><br>
 
-        <label class="form-label">cook time</label>
-        <input class="form-control" type="text" name="cookTime">
-        <br>
-
-        <label class="form-label">servings</label>
-        <input class="form-control" type="text" name="servings">
-        <br>
-
-        <label class="form-label">ingredients</label>
-        <input class="form-control" type="text" name="ingredients">
-        <br>
-
-        <label class="form-label">instructions</label>
-        <input class="form-control" type="text" name="instructions">
+        <label class="form-label">Instructions</label>
+        <textarea rows="5" cols="60" name="instructions">
+         </textarea><br>
 
         <br>
         <button class="btn btn-primary" type="submit">SUBMIT</button>
