@@ -29,7 +29,6 @@ router.get("/profile", loginCheck(), (req, res, nex) => {
 //home page displaying six fish
 router.get("/fish/:id", (req, res, next) => {
   let id = req.params.id;
-  console.log(id);
 
   FishModel.findById(id)
     .then((fish) => {
