@@ -3,6 +3,14 @@
 
 <p>The fish you create</p>
 
+<div class="fishcontainer">
+  {{#each fish}}
+  <a href="/fish/{{this._id}}">
+    <img class="fishphoto" src="{{this.speciesIllustrationPhoto}}" alt="">
+  </a>
+  {{/each }}
+
+</div>
 
 
 <p>Edit the reciepe you create</p>

@@ -125,3 +125,17 @@ form.fishsearch::after {
   max-width: 500px;
 
 }
+
+.editanddeletebutton {
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px;
+}
+
+#btn{
+  margin: 20px;
+
+}
+
+
+

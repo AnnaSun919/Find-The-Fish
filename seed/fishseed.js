@@ -25,5 +25,5 @@ axios
     console.log("fish data added");
   })
   .catch((err) => {
-    console.log("Axios BB fetch failed", err);
+    console.log("Fish fetch failed", err);
   });
