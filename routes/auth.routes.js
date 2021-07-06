@@ -1,6 +1,7 @@
 const router = require("express").Router();
 let bcrypt = require("bcryptjs");
 let UserModel = require("../models/User.model");
+let FishModel = require("../models/Fish.model");
 
 /* GET home page */
 router.get("/login", (req, res, next) => {
@@ -49,20 +50,23 @@ router.post("/login", (req, res, next) => {
       if (user) {
         let isValide = bcrypt.compareSync(password, user.password);
         if (isValide) {
+          console.log("11111111");
           req.session.loggedInUser = user;
           req.app.locals.isLoggedIn = true;
           res.redirect("/profile");
         } else {
+          console.log("22222222");
           res.render("./auth/login.hbs", {
             error: "Invalid password",
           });
         }
       } else {
+        console.log("33333333");
         res.render("./auth/login.hbs", { error: "No user" });
       }
     })
     .catch((err) => {
-      console.log(err);
+      console.log("444444444");
       next(err);
     });
 });
@@ -72,6 +76,22 @@ router.get("/logout", (req, res, next) => {
 
   req.app.locals.isLoggedIn = false;
   res.redirect("/");
+});
+
+router.get("/profile", (req, res, nex) => {
+  let name = req.session.loggedInUser.username;
+  let id = req.session.loggedInUser._id;
+  if ((req.app.locals.isLoggedIn = true)) {
+    FishModel.find({ fisher: id })
+      .then((fish) => {
+        res.render("main/profile.hbs", { name, fish });
+      })
+      .catch((err) => {
+        next(err);
+      });
+  } else {
+    res.redirect("/login");
+  }
 });
 
 module.exports = router;

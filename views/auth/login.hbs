@@ -1,22 +1,22 @@
-<h4>Log in</h4>
+<section>
+  <h4>Log in</h4>
 
-<form method="POST" action="/login">
-  <label>User name</label>
-  <input type="text" name="username" placeholder="Enter your name here" />
-  <br />
-  <label>Password</label>
-  <input type="password" name="password" placeholder="Enter your password" />
-  <br />
+  <form method="POST" action="/login">
+    <label class="form-label">User Name</label>
+    <input type="text" name="username" placeholder="Enter your name here" />
+    <br>
 
-  <button>Log in</button>
-</form>
+    <label class="form-label">Password</label>
+    <input type="password" name="password" placeholder="Enter your password" />
+    <br>
+    <button class="btn btn-primary" type="submit">Log In</button>
+  </form>
 
-{{#if error}}
+  {{#if error}}
   <p class="error">{{error}}</p>
 
-{{/if}}
-<img
-  class="signInimg"
-  src="https://www.sportfishingdalsland.com/uploads/7/0/2/9/7029564/published/img-7173_1.jpg?1547323488"
-  alt=""
-/>
+  {{/if}}
+  <img class="signInimg"
+    src="https://www.sportfishingdalsland.com/uploads/7/0/2/9/7029564/published/img-7173_1.jpg?1547323488" alt="" />
+
+</section>

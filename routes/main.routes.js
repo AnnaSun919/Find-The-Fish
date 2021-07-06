@@ -1,7 +1,6 @@
 const router = require("express").Router();
 let UserModel = require("../models/User.model");
 let FishModel = require("../models/Fish.model");
-const { populate } = require("../models/User.model");
 
 //asscess profile
 
@@ -14,19 +13,6 @@ const loginCheck = () => {
     }
   };
 };
-
-router.get("/profile", loginCheck(), (req, res, nex) => {
-  let name = req.session.loggedInUser.username;
-  let id = req.session.loggedInUser._id;
-
-  FishModel.find({ fisher: id })
-    .then((fish) => {
-      res.render("main/profile.hbs", { name, fish });
-    })
-    .catch((err) => {
-      next(err);
-    });
-});
 
 router.get("/fish/:id", (req, res, next) => {
   let id = req.params.id;
@@ -60,7 +46,6 @@ router.get("/fish/:id", (req, res, next) => {
       //   res.render("main/fishdetails.hbs", { fish });
       // }
     })
-    .then((fish) => {})
     .catch((err) => {
       console.log(err);
       next("find no fish");
@@ -80,7 +65,7 @@ router.get("/search", (req, res, next) => {
         next("find no fish");
       });
   } else {
-    FishModel.find({ speciesName: new RegExp(searchinput) })
+    FishModel.find({ speciesName: new RegExp(searchinput, "gi") })
 
       .then((fish) => {
         if (fish.length === 0) {
@@ -105,23 +90,21 @@ router.get("/createfish", loginCheck(), (req, res) => {
 
 router.post("/createfish", (req, res, next) => {
   const {
-    habitat,
-    location,
-    population,
-    scientificName,
     speciesIllustrationPhoto,
     speciesName,
+    scientificName,
+    avalibility,
+    location,
     biology,
   } = req.body;
 
   const fisher = req.session.loggedInUser._id;
   FishModel.create({
-    habitat,
-    location,
-    population,
-    scientificName,
     speciesIllustrationPhoto,
     speciesName,
+    scientificName,
+    avalibility,
+    location,
     biology,
     fisher,
   })
@@ -149,22 +132,20 @@ router.post("/fish/:id/edit", loginCheck(), (req, res, next) => {
   let id = req.params.id;
 
   const {
-    habitat,
-    location,
-    population,
-    scientificName,
     speciesIllustrationPhoto,
     speciesName,
+    scientificName,
+    avalibility,
+    location,
     biology,
   } = req.body;
 
   FishModel.findByIdAndUpdate(id, {
-    habitat,
-    location,
-    population,
-    scientificName,
     speciesIllustrationPhoto,
     speciesName,
+    scientificName,
+    avalibility,
+    location,
     biology,
   })
     .then(() => {
