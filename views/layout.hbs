@@ -40,7 +40,7 @@
     <select class="fishsearchoption" placeholder="Select">
       <option value="">Please select*</option>
       <option value="Fish">Fish</option>
-      <option value="Reciept">Reciept</option>
+      <option value="Reciept">Recipes</option>
     </select>
     <form class="fishsearch" action="/search" method="get">
       <input class="fishsearch1" type="text" placeholder="Search.." name="searchthefish">
@@ -57,6 +57,11 @@
       <a href="/logout">
         <button type="button" class="btn btn-primary">Log out</button>
       </a>
+
+      {{!-- <a href="/recipes">
+        <button type="button" class="btn btn-success">Add Recipe</button>
+      </a> --}}
+
       {{else}}
       <a href="/signup">
         <button type="button" class="btn btn-secondary">Sign up</button>
@@ -71,6 +76,10 @@
     </div>
 
     <a href="/recipes">
+      <button type="button" class="btn btn-success">Recipes</button>
+    </a>
+    <b></b>
+    <a href="/addrecipe">
       <button type="button" class="btn btn-success">Add Recipe</button>
     </a>
 
@@ -97,9 +106,9 @@
       src="https://www.logosc.cn/uploads/icon/2019/06/05//6d8ca6cd-783d-4119-9cdf-4dbf9626ded7.png" alt="fishlogo">
 
   </div>
-  <p>connet people with nature</p>
+  <p>Connect people with nature and then eat nature :D</p>
   <a href="/generalinfo">General information</a>
-  <p>Created by Anna Sun and Salvador Orona</p>
+  <p>Created by Anna Sun and The Invisible Dr.Shade</p>
   <p></p>
 </footer>
 

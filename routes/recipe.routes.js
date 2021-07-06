@@ -17,17 +17,17 @@ router.get('/recipes', (req, res, next) => {
   });
 
 // handling GET request to main/addrecipe
-  router.get("/recipes", (req, res) => {
+  router.get("/addrecipe", (req, res) => {
     res.render("recipe/addrecipe.hbs");
   });
   
-  // handling POST request to main/addrecipe
+  // handling POST request to /addrecipe
   router.post("/recipes", (req, res, next) => {
     const {title, ingredients, instructions} = req.body
     const recipe = req.session.loggedInUser._id;
     RecipeModel.create({title, ingredients,instructions,recipe})
       .then(() => {
-        res.render("recipe/recipe-list.hbs");
+        res.redirect("/recipes");
       })
       .catch(() => {
         next("failed to save recipe");
@@ -69,15 +69,13 @@ router.get('/recipes/:id/edit', (req, res, next) => {
   router.post('/recipes/:id/edit', (req, res, next) => {
 
     let dynamicRecipeId = req.params.id
-
-     const {title, ingredients, instructions} = req.body
+    const {title, ingredients, instructions} = req.body
   
     RecipeModel.findByIdAndUpdate(dynamicRecipeId,{title, ingredients,instructions})
     .then (()=> {
-    
-      res.redirect('/recipe')
+      res.redirect('/recipes')
     })
-    .catch ((err)=>{
+    .catch (()=>{
       next('Edit failed')
     })
     
@@ -93,7 +91,7 @@ router.get('/recipes/:id/edit', (req, res, next) => {
   
     RecipeModel.findByIdAndDelete(dynamicRecipeId)
       .then(()=>{
-        res.redirect('/recipe')
+        res.redirect('/recipes')
       })
       .catch(()=>{
         next('Failed to delete recipe')
