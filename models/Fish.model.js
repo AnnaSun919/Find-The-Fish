@@ -2,14 +2,12 @@ const { Schema, model } = require("mongoose");
 require("./User.model");
 
 const fishSchema = new Schema({
-  habitat: String,
-  habitatImpacts: String,
-  location: String,
-  population: String,
-  scientificName: String,
-  speciesIllustrationPhoto: String,
   speciesName: String,
+  scientificName: String,
+  avalibility: String,
+  location: String,
   biology: String,
+  speciesIllustrationPhoto: String,
   fisher: {
     ref: "User",
     type: Schema.Types.ObjectId,

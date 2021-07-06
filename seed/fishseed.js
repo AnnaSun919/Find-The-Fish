@@ -11,12 +11,11 @@ axios
       let listoffish = response.data[i];
 
       FishModel.insertMany({
-        habitat: listoffish.Habitat,
-        habitatImpacts: listoffish["Habitat Impacts"],
-        location: listoffish.Location,
-        population: listoffish.Population,
         speciesIllustrationPhoto: listoffish["Species Illustration Photo"].src,
         speciesName: listoffish["Species Name"],
+        scientificName: listoffish["Scientific Name"],
+        avalibility: listoffish.Availability,
+        location: listoffish.Location,
         biology: listoffish.Biology,
       });
     }

@@ -1,6 +1,7 @@
 const router = require("express").Router();
 let bcrypt = require("bcryptjs");
 let UserModel = require("../models/User.model");
+let FishModel = require("../models/Fish.model");
 
 /* GET home page */
 router.get("/login", (req, res, next) => {
@@ -75,6 +76,22 @@ router.get("/logout", (req, res, nex) => {
 
   req.app.locals.isLoggedIn = false;
   res.redirect("/");
+});
+
+router.get("/profile", (req, res, nex) => {
+  let name = req.session.loggedInUser.username;
+  let id = req.session.loggedInUser._id;
+  if ((req.app.locals.isLoggedIn = true)) {
+    FishModel.find({ fisher: id })
+      .then((fish) => {
+        res.render("main/profile.hbs", { name, fish });
+      })
+      .catch((err) => {
+        next(err);
+      });
+  } else {
+    res.redirect("/login");
+  }
 });
 
 module.exports = router;

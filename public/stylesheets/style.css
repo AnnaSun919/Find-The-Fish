@@ -1,6 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
 body {
   font: 14px  serif,sans-serif;
   background-color: white;
+
 
 
 }
@@ -192,3 +199,6 @@ form.fishsearch::after {
   
 }
 
+section{
+  margin-left: 20px;
+}
