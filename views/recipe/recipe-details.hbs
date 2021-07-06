@@ -1,0 +1,21 @@
+<h2>Update the recipe details</h2>
+
+<h3>Title: {{recipe.title}}</h3>
+
+<h4>ingredient: {{recipe.ingredients}}</h4>
+
+<h4>instructions: {{recipe.instructions}}</h4>
+
+
+
+
+
+{{!-- The recipe._id will be a dynamic id to a single todo --}}
+<form action="/recipes/{{recipe._id}}/edit" method="GET">
+    <button type="submit" class="btn btn-warning">Edit</button>
+</form>
+
+{{!-- The recipe._id will be a dynamic id to a single todo --}}
+<form action="/recipes/{{recipe._id}}/delete" method="POST">
+    <button class="btn btn-danger">Delete</button>
+</form>

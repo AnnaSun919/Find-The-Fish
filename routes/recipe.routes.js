@@ -1,45 +1,33 @@
 const router = require("express").Router();
-let UserModel = require("../models/User.model");
-let FishModel = require("../models/Fish.model");
+// let UserModel = require("../models/User.model");
+// let FishModel = require("../models/Fish.model");
 let RecipeModel = require("../models/Recipe.model");
 
 
 // GET home page
-router.get('/', (req, res, next) => {
+router.get('/recipes', (req, res, next) => {
 
     RecipeModel.find()
-      .then((recipes) => {
-          res.render('main/recipe-list.hbs', {recipes})
+      .then((recipe) => {
+          res.render('recipe/recipe-list.hbs', {recipe})
       })
-      .catch(() => {
+      .catch((err) => {
           next('Find failed')
       })
   });
 
 // handling GET request to main/addrecipe
-  router.get("/addrecipe", (req, res) => {
-    res.render("main/addrecipe.hbs");
+  router.get("/recipes", (req, res) => {
+    res.render("recipe/addrecipe.hbs");
   });
   
   // handling POST request to main/addrecipe
-  router.post("/addrecipe", (req, res, next) => {
-    const {
-   title,
-   ingredients,
-   instructions,
-
-    } = req.body;
-   
-  
+  router.post("/recipes", (req, res, next) => {
+    const {title, ingredients, instructions} = req.body
     const recipe = req.session.loggedInUser._id;
-    RecipeModel.create({
-        title,
-        ingredients,
-        instructions,
-        recipe,
-    })
+    RecipeModel.create({title, ingredients,instructions,recipe})
       .then(() => {
-        res.render("main/recipe-list.hbs");
+        res.render("recipe/recipe-list.hbs");
       })
       .catch(() => {
         next("failed to save recipe");
@@ -47,51 +35,68 @@ router.get('/', (req, res, next) => {
   });
 
 
-
-  //Updates form
-router.get('/main/:id/edit', (req, res, next) => {
-
-    let dynamicçId = req.params.id
+  router.get('/recipes/:id', (req,res,next) => {
+    let dynamicRecipeId =req.params.id
+  
     RecipeModel.findById(dynamicRecipeId)
-      .then ((recipes)=> {
-        //pass the drones value to the edit form
-        res.render('drones/update-form.hbs', {recipes})
+    .then((recipe)=>{
+      res.render('recipe/recipe-details.hbs', {recipe})
+    })
+    .catch(()=>{
+      next('Finding details failed')
+    })  
+  })
+  
+  
+  //Dynamic Update for form
+router.get('/recipes/:id/edit', (req, res, next) => {
+
+    let dynamicRecipeId = req.params.id
+
+
+    RecipeModel.findById(dynamicRecipeId)
+      .then ((recipe)=> {
+        //pass the recipe value to the edit form
+        res.render('recipe/update-recipe.hbs', {recipe})
       })
-      .catch(()=> {
-        next('Cannot find the damn drone details')
+      .catch((err)=> {
+        next('Cannot find the damn recipe details')
       })
   });
   
 
-  router.post('/main/:id/edit', (req, res, next) => {
+//Dynamic POST
+  router.post('/recipes/:id/edit', (req, res, next) => {
 
     let dynamicRecipeId = req.params.id
 
-    const {name, propellers, maxSpeed } = req.body
+     const {title, ingredients, instructions} = req.body
   
     RecipeModel.findByIdAndUpdate(dynamicRecipeId,{title, ingredients,instructions})
     .then (()=> {
     
-      res.redirect('/main')
+      res.redirect('/recipe')
     })
-    .catch (()=>{
+    .catch ((err)=>{
       next('Edit failed')
     })
     
     
   });
   
-  router.post('/main/:id/delete', (req, res, next) => {
+
+  //Deletes POST
+  router.post('/recipes/:id/delete', (req, res, next) => {
 
     //create variable for dynamic ID
     let dynamicRecipeId = req.params.id
   
     RecipeModel.findByIdAndDelete(dynamicRecipeId)
       .then(()=>{
-        res.redirect('/main')
+        res.redirect('/recipe')
       })
       .catch(()=>{
-        next('Failed to delet recipe')
+        next('Failed to delete recipe')
       })
     
   });
