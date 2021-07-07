@@ -106,8 +106,16 @@ router.post("/upload", uploader.single("imageUrl"), (req, res, next) => {
     profilePic: req.file.path,
   })
     .then(() => {
-      res.redirect("/profile");
+      UserModel.findByIdAndUpdate(req.session.loggedInUser._id)
+        .then((user) => {
+          req.session.loggedInUser = user;
+          console.log(user);
+        })
+        .then(() => {
+          res.redirect("/profile");
+        });
     })
+
     .catch((err) => {
       console.log(err);
     });

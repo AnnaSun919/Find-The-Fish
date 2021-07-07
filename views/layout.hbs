@@ -28,6 +28,10 @@
         {{#if isLoggedIn}}
         <a class="nav-item nav-link" href="/profile">Profile</a>
         <a class="nav-item nav-link" href="/createfish">Create Fish</a>
+        <a class="nav-item nav-link" href="/recipes">Recipes</a>
+        <a class="nav-item nav-link" href="/addrecipe">Add Recipes</a>
+
+
         {{/if}}
       </div>
     </div>
@@ -58,13 +62,13 @@
         <button type="button" class="btn btn-primary">Log out</button>
       </a>
 
-      <a href="/recipes">
+      {{!-- <a href="/recipes">
         <button type="button" class="btn btn-success">Recipes</button>
       </a>
       <b></b>
       <a href="/addrecipe">
         <button type="button" class="btn btn-success">Add Recipe</button>
-      </a>
+      </a> --}}
 
       {{else}}
       <a href="/signup">
