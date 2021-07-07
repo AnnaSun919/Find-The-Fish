@@ -2,6 +2,7 @@ const router = require("express").Router();
 let bcrypt = require("bcryptjs");
 let UserModel = require("../models/User.model");
 let FishModel = require("../models/Fish.model");
+const uploader = require("../middlewares/cloudinary.config.js");
 
 /* GET home page */
 router.get("/login", (req, res, next) => {
@@ -12,8 +13,12 @@ router.get("/signup", (req, res, next) => {
   res.render("./auth/signup.hbs");
 });
 
-router.post("/signup", (req, res, next) => {
+router.post("/signup", uploader.single("imagePath"), (req, res, next) => {
   const { username, password } = req.body;
+
+  const defaultUserImage =
+    "https://res.cloudinary.com/dtjxpedls/image/upload/v1625579445/uhqx9pvj5uzkrtnqp7fx.jpg";
+  let imagePath = req.file ? req.file.url : defaultUserImage;
 
   if (!username || !password) {
     res.render("auth/signup.hbs", { error: "Please enter all fields" });
@@ -35,7 +40,7 @@ router.post("/signup", (req, res, next) => {
   const salt = bcrypt.genSaltSync(10);
   const hash = bcrypt.hashSync(password, salt);
 
-  UserModel.create({ username, password: hash })
+  UserModel.create({ username, password: hash, profilePic: imagePath })
     .then(() => res.redirect("/"))
     .catch((err) => {
       next(err);
@@ -79,12 +84,13 @@ router.get("/logout", (req, res, next) => {
 });
 
 router.get("/profile", (req, res, nex) => {
-  let name = req.session.loggedInUser.username;
-  let id = req.session.loggedInUser._id;
   if ((req.app.locals.isLoggedIn = true)) {
+    let id = req.session.loggedInUser._id;
+    let user = req.session.loggedInUser;
+
     FishModel.find({ fisher: id })
       .then((fish) => {
-        res.render("main/profile.hbs", { name, fish });
+        res.render("main/profile.hbs", { user, fish });
       })
       .catch((err) => {
         next(err);
@@ -92,6 +98,19 @@ router.get("/profile", (req, res, nex) => {
   } else {
     res.redirect("/login");
   }
+});
+
+router.post("/upload", uploader.single("imageUrl"), (req, res, next) => {
+  // the uploader.single() callback will send the file to cloudinary and get you and obj with the url in return
+  UserModel.findByIdAndUpdate(req.session.loggedInUser._id, {
+    profilePic: req.file.path,
+  })
+    .then(() => {
+      res.redirect("/profile");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 module.exports = router;

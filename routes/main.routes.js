@@ -25,7 +25,6 @@ router.get("/fish/:id", (req, res, next) => {
         req.app.locals.isCreator = false;
         res.render("main/fishdetails.hbs", { fish });
       } else if (!req.session.loggedInUser) {
-        req.app.locals.isCreatedbyUser = false;
         req.app.locals.isCreator = false;
         res.render("main/fishdetails.hbs", { fish });
       } else if (fish.fisher._id.toString() === req.session.loggedInUser._id) {

@@ -1,21 +1,24 @@
-<h1>Search result</h1>
+<section>
+  <h1>Search result</h1>
 
 
-<div class="fishcontainer"></div>
-{{#each fish }}
+  <div class="fishcontainer"></div>
+  {{#each fish }}
 
 
-<a href="/fish/{{this._id}}">
-  <img class="fishphoto" src="{{this.speciesIllustrationPhoto}}" alt="">
-</a>
+  <a href="/fish/{{this._id}}">
+    <img class="fishphoto" src="{{this.speciesIllustrationPhoto}}" alt="">
+  </a>
 
 
 
-{{/each}}
+  {{/each}}
 
-</div>
+  </div>
 
-{{#if error}}
-<p class="error">{{error}}<a href="/createfish">Creating Fish</a></p>
-<a href=""></a>
-{{/if}}
+  {{#if error}}
+  <p class="error">{{error}}<a href="/createfish">Creating Fish</a></p>
+  <a href=""></a>
+  {{/if}}
+
+</section>

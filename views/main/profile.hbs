@@ -1,5 +1,10 @@
-<h1>Hello {{name}},</h1>
+<h1>Hello {{user.username}},</h1>
+<img class="profilepic" src="{{user.profilePic}}" alt="">
 
+<form method="POST" action="/upload" enctype="multipart/form-data">
+  <input type="file" name="imageUrl" accept="image/png, image/jpg">
+  <button type="submit">Submit</button>
+</form>
 
 <p>The fish you create</p>
 

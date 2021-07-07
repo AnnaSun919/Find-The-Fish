@@ -1,10 +1,13 @@
-<h2>Available recipes</h2>
+<section>
+    <h2>Available recipes</h2>
 
-{{#each recipe}}
+    {{#each recipe}}
 
-<a href="/main/{{ this._id }}">
-    <p>{{this.title}} {{this.instructions}} {{this.ingredients}}</p>
-</a>
+    <a href="/main/{{ this._id }}">
+        <p>{{this.title}} {{this.instructions}} {{this.ingredients}}</p>
+    </a>
 
 
-{{/each}}
+    {{/each}}
+
+</section>
