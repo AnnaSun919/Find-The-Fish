@@ -110,10 +110,11 @@ router.post("/upload", uploader.single("imageUrl"), (req, res, next) => {
         .then((user) => {
           req.session.loggedInUser = user;
           console.log(user);
-        })
-        .then(() => {
           res.redirect("/profile");
-        });
+        })
+        // .then(() => {
+        //   // res.redirect("/profile");
+        // });
     })
 
     .catch((err) => {
