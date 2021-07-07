@@ -172,6 +172,12 @@ form.fishsearch::after {
   margin-right: 10px;
 }
 
+.profilepic{
+  height: 300px;
+  width: 500px;
+  
+}
+
 .footerfish {
   display: flex;
   align-items: center;
@@ -206,3 +212,4 @@ form.fishsearch::after {
 section {
   margin-left: 20px;
 }
+
