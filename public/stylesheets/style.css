@@ -170,106 +170,88 @@ form.fishsearch::after {
   margin-right: 10px;
 }
 
-<<<<<<< Updated upstream .profilepic {
-  height: 200px;
-  width: 300px;
+.profilepic {
+  height: 300px;
+  width: 500px;
 
+}
+
+.footerfish {
+  display: flex;
+  align-items: center;
+}
+
+.footerfish:before,
+.footerfish:after {
+  content: '';
   border: 2px solid black;
+  flex: 1;
+}
 
-  =======.profilepic {
-    height: 300px;
-    width: 500px;
-
-    >>>>>>>Stashed changes
-  }
-
-  .footerfish {
-    display: flex;
-    align-items: center;
-  }
-
-  .footerfish:before,
-  .footerfish:after {
-    content: '';
-    border: 2px solid black;
-    flex: 1;
-  }
-
-  /* .footerfish{
+/* .footerfish{
   align-items: center;
   display: flex;
   justify-content: center;
 } */
 
-  #footerfishpic {
-    height: 80px;
-    width: 80px;
+#footerfishpic {
+  height: 80px;
+  width: 80px;
 
-    margin: 0 1em;
-    border-radius: 50%;
-  }
+  margin: 0 1em;
+  border-radius: 50%;
+}
 
-  #btn1 {
-    margin-left: 10px;
+#btn1 {
+  margin-left: 10px;
 
-  }
+}
 
-  section {
-    margin-left: 50px;
-    min-height: 500px
-  }
+section {
+  margin-left: 50px;
+  min-height: 500px
+}
 
 
 
-  .profileContainer {
-    display: flex;
-    flex-direction: row;
-  }
+.profileContainer {
+  display: flex;
+  flex-direction: row;
+}
 
-  .infoContainer {
-    margin-left: 30px;
+.infoContainer {
+  margin-left: 30px;
 
-  }
+}
 
-  .info {
-    background-color: beige;
-    margin-left: 30px;
-    margin-right: 30px;
-    padding: 10px;
-  }
+.info {
+  background-color: beige;
+  margin-left: 30px;
+  margin-right: 30px;
+  padding: 10px;
+}
 
-  .content {
-    font-size: 20px;
+.content {
+  font-size: 20px;
 
-  }
+}
 
-  .content2 {
-    font-size: 16px;
-    margin-left: 20px;
-  }
+.content2 {
+  font-size: 16px;
+  margin-left: 20px;
+}
 
-  .footerwords {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+.footerwords {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  footer {
-    width: 100%;
-    height: 50px;
-    position: relative;
-    bottom: 0;
-    left: 0;
+footer {
+  width: 100%;
+  height: 50px;
+  position: relative;
+  bottom: 0;
+  left: 0;
 
-    .recipePiccontainer {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-left: 20px;
-    }
-
-    .recipephoto {
-      height: 200px;
-      width: 500px;
-    }
+}
