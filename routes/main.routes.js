@@ -1,9 +1,10 @@
 const router = require("express").Router();
 let UserModel = require("../models/User.model");
 let FishModel = require("../models/Fish.model");
+let RecipeModel = require("../models/Recipe.model");
 const uploader = require("../middlewares/cloudinary.config.js");
-//asscess profile
 
+//check login function
 const loginCheck = () => {
   return (req, res, next) => {
     if (req.session.loggedInUser) {
@@ -14,6 +15,7 @@ const loginCheck = () => {
   };
 };
 
+//fish
 router.get("/fish/:id", (req, res, next) => {
   let id = req.params.id;
 
@@ -86,8 +88,33 @@ router.get("/search", (req, res, next) => {
     }
   }
 
-  if (option === "Reciept") {
-    res.redirect("/profile");
+  if (option === "Recipes") {
+    if (!searchinput) {
+      RecipeModel.find({}, "recipePic")
+        .then((recipe) => {
+          res.render("main/searchresults.hbs", { recipe });
+        })
+        .catch(() => {
+          next("find no fish");
+        });
+    } else {
+      RecipeModel.find({ title: new RegExp(searchinput, "gi") })
+
+        .then((recipe) => {
+          if (recipe.length === 0) {
+            res.render("main/searchresults.hbs", {
+              error: "Oops, Cannot find the recipe.",
+            });
+
+            return;
+          }
+
+          res.render("main/searchresults.hbs", { recipe });
+        })
+        .catch(() => {
+          next("find no recipe");
+        });
+    }
   }
 });
 

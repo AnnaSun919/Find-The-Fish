@@ -14,6 +14,17 @@
 
   {{/each}}
 
+  {{#each recipe }}
+
+
+  <a href="/recipes/{{this._id}}">
+    <img class="recipephoto" src="{{this.recipePic}}" alt="">
+  </a>
+
+
+
+  {{/each}}
+
   </div>
 
   {{#if error}}
