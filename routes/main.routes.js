@@ -54,32 +54,40 @@ router.get("/fish/:id", (req, res, next) => {
 //search bar
 router.get("/search", (req, res, next) => {
   let searchinput = req.query.searchthefish;
+  const option = req.query.selection;
+  console.log(option);
+  if (option === "Fish") {
+    if (!searchinput) {
+      FishModel.find({}, "speciesIllustrationPhoto")
+        .then((fish) => {
+          res.render("main/searchresults.hbs", { fish });
+        })
+        .catch(() => {
+          next("find no fish");
+        });
+    } else {
+      FishModel.find({ speciesName: new RegExp(searchinput, "gi") })
 
-  if (!searchinput) {
-    FishModel.find({}, "speciesIllustrationPhoto")
-      .then((fish) => {
-        res.render("main/searchresults.hbs", { fish });
-      })
-      .catch(() => {
-        next("find no fish");
-      });
-  } else {
-    FishModel.find({ speciesName: new RegExp(searchinput, "gi") })
+        .then((fish) => {
+          if (fish.length === 0) {
+            res.render("main/searchresults.hbs", {
+              error:
+                "Cannot find the fish, Pleae help us build our database by ",
+            });
 
-      .then((fish) => {
-        if (fish.length === 0) {
-          res.render("main/searchresults.hbs", {
-            error: "Cannot find the fish, Pleae help us build our database by ",
-          });
+            return;
+          }
 
-          return;
-        }
+          res.render("main/searchresults.hbs", { fish });
+        })
+        .catch(() => {
+          next("find no fish");
+        });
+    }
+  }
 
-        res.render("main/searchresults.hbs", { fish });
-      })
-      .catch(() => {
-        next("find no fish");
-      });
+  if (option === "Reciept") {
+    res.redirect("/profile");
   }
 });
 
@@ -141,8 +149,6 @@ router.post(
   uploader.single("speciesIllustrationPhoto"),
   (req, res, next) => {
     let id = req.params.id;
-
-    console.log(req.file);
 
     const speciesIllustrationPhoto = req.file.path;
 
