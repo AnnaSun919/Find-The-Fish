@@ -1,8 +1,5 @@
 <h1>Update the recipe details</h1>
 
-<b></b>
-<b></b>
-
 <h3>Title: {{recipe.title}}</h3>
 
 <p>ingredients: {{recipe.ingredients}}</p>
@@ -10,8 +7,10 @@
 <p>instructions: {{recipe.instructions}}</p>
 
 
+<img src={{recipe.recipePic}}>
 
-
+<br>
+<br>
 
 {{!-- The recipe._id will be a dynamic id to a single todo --}}
 <form action="/recipes/{{recipe._id}}/edit" method="GET">

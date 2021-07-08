@@ -1,7 +1,7 @@
 <h2>Add a seafood recipe</h2>
 
 
-<form class="addrecipeform" method="POST" action="/recipes">
+<form class="addrecipeform" method="POST" action="/recipes" enctype="multipart/form-data">
 
 
 
@@ -18,15 +18,9 @@
         <label class="form-label">Instructions</label>
         <textarea rows="5" cols="60" name="instructions">
          </textarea><br>
-
+        <input type="file" name="imageUrl" accept="image/png, image/jpg">
         <br>
         <button class="btn btn-primary" type="submit">SUBMIT</button>
 
     </div>
-</form>
-
-
-<form method="POST" action="/uploadrecipe" enctype="multipart/form-data">
-    <input type="file" name="imageUrl" accept="image/png, image/jpg">
-    <button type="submit">Submit</button>
 </form>

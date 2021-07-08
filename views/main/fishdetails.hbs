@@ -1,6 +1,8 @@
 <section>
-  <h1>Name : {{fish.speciesName}} Scientific Name:{{fish.scientificName}}</h1>
+
   <div class="button" role="group" aria-label="Basic outlined example">
+
+
     <div class="editanddeletebutton">
       {{#if isCreator}}
       <form action="/fish/{{fish._id}}/edit" method="GET">
@@ -11,17 +13,30 @@
         <button id="btn1" class="btn btn-danger">Delete</button>
       </form>
       {{/if}}
-      <img src="./public/images/note-tape-paper-light-yellow-notepad-blank-11585799848mpbflnvfur.png" alt="">
     </div>
+  </div>
 
-    <img class="bigfishphoto" src="{{fish.speciesIllustrationPhoto}}" alt="fish" />
-    <p>Avalibility : {{{fish.avalibility}}}</p>
-    <p>Location : {{{fish.location}}}</p>
-    <p>Biology : {{{fish.biology}}} </p>
+  <div class="profileContainer">
+    <div>
+      <img class="bigfishphoto" src="{{fish.speciesIllustrationPhoto}}" alt="fish" />
+    </div>
+    <div class="info">
+      <p class="subtitle">Name : {{fish.speciesName}} </p>
+
+      <p class="subtitle">Scientific Name : {{fish.scientificName}}</p>
+      <p class="content">Avalibility : </p>
+      <p class="content2">{{{fish.avalibility}}}</p>
+      <p class="content">Location :</p>
+      <p class="content2">{{{fish.location}}}</p>
+      <p class="content">Biology : </p>
+      <p class="content2">{{{fish.biology}}}</p>
 
 
-    {{#if isCreatedbyUser}}
-    <p>Information provided by : {{fish.fisher.username}} </p>
-    {{/if}}
+      {{#if isCreatedbyUser}}
+      <p class="content">Information provided by : </p>
+      <p class="content2">{{fish.fisher.username}} </p>
+      {{/if}}
+    </div>
+  </div>
 
 </section>
