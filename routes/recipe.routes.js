@@ -29,10 +29,14 @@ router.get('/recipes', (req, res, next) => {
   });
   
   // handling POST request to /addrecipe
-  router.post("/recipes", (req, res, next) => {
+  router.post("/recipes", uploader.single("imageUrl"),(req, res, next) => {
+    if (!req.file) {
+      next(new Error('No file uploaded!'));
+      return;
+    }
     const {title, ingredients, instructions} = req.body
     const recipe = req.session.loggedInUser._id;
-    RecipeModel.create({title, ingredients,instructions,recipe})
+    RecipeModel.create({title, ingredients,instructions,recipe,recipePic:req.file.path})
       .then(() => {
         res.redirect("/recipes");
       })
@@ -73,12 +77,16 @@ router.get('/recipes/:id/edit', (req, res, next) => {
   
 
 //Dynamic POST
-  router.post('/recipes/:id/edit', (req, res, next) => {
-
+  router.post('/recipes/:id/edit', uploader.single("imageUrl"), (req, res, next) => {
+  
+    if (!req.file) {
+      next(new Error('No file uploaded!'));
+      return;
+    }  
     let dynamicRecipeId = req.params.id
     const {title, ingredients, instructions} = req.body
   
-    RecipeModel.findByIdAndUpdate(dynamicRecipeId,{title, ingredients,instructions})
+    RecipeModel.findByIdAndUpdate(dynamicRecipeId,{title, ingredients,instructions,recipePic:req.file.path})
     .then (()=> {
       res.redirect('/recipes')
     })
@@ -110,25 +118,8 @@ router.get('/recipes/:id/edit', (req, res, next) => {
 
 
   
-  // ensure you have an input type like this in your hbs file
-  /*
-  <form method="POST" action="/upload" enctype="multipart/form-data">
-      <input type="file" name="imageUrl" accept="image/png, image/jpg">
-      <button type="submit">Submit</button> 
-  </form>     
-  */
+
   
-  // imageUrl is the input name in your hbs file
-  
-  
-  router.post('/uploadrecipe', uploader.single("imageUrl"), (req, res, next) => {
-       console.log('file is: ', req.file)
-      if (!req.file) {
-        next(new Error('No file uploaded!'));
-        return;
-      }
-      //You will get the image url in 'req.file.path'
-      //store that in the DB  
-  })
+
 
   module.exports = router;

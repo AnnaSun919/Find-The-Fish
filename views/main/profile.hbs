@@ -1,21 +1,32 @@
-<h1>Hello {{user.username}},</h1>
-<img class="profilepic" src="{{user.profilePic}}" alt="">
+<section>
+  <h1>Hello {{user.username}},</h1>
+  <div class="profileContainer">
+    <div>
+      <img class="profilepic" src="{{user.profilePic}}" alt="">
 
-<form method="POST" action="/upload" enctype="multipart/form-data">
-  <input type="file" name="imageUrl" accept="image/png, image/jpg">
-  <button type="submit">Submit</button>
-</form>
+      <form class="profilephoto" method="POST" action="/upload" enctype="multipart/form-data">
+        <input type="file" name="imageUrl" accept="image/png, image/jpg">
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <div>
 
-<p>The fish you create</p>
+      <div class="infoContainer">
+        <p class="subtitle">Edit the fish you create</p>
 
-<div class="fishcontainer">
-  {{#each fish}}
-  <a href="/fish/{{this._id}}">
-    <img class="fishphoto" src="{{this.speciesIllustrationPhoto}}" alt="">
-  </a>
-  {{/each }}
+        <div class="fishcontainer">
+          {{#each fish}}
+          <a href="/fish/{{this._id}}">
+            <img class="fishphoto" src="{{this.speciesIllustrationPhoto}}" alt="">
+          </a>
+          {{/each }}
 
-</div>
+        </div>
 
 
-<p>Edit the reciepe you create</p>
+        <p class="subtitle">Edit the reciepe you create</p>
+
+      </div>
+    </div>
+  </div>
+</section>

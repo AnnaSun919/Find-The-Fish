@@ -1,7 +1,7 @@
 const router = require("express").Router();
 let UserModel = require("../models/User.model");
 let FishModel = require("../models/Fish.model");
-
+const uploader = require("../middlewares/cloudinary.config.js");
 //asscess profile
 
 const loginCheck = () => {
@@ -54,66 +54,82 @@ router.get("/fish/:id", (req, res, next) => {
 //search bar
 router.get("/search", (req, res, next) => {
   let searchinput = req.query.searchthefish;
+  const option = req.query.selection;
+  console.log(option);
+  if (option === "Fish") {
+    if (!searchinput) {
+      FishModel.find({}, "speciesIllustrationPhoto")
+        .then((fish) => {
+          res.render("main/searchresults.hbs", { fish });
+        })
+        .catch(() => {
+          next("find no fish");
+        });
+    } else {
+      FishModel.find({ speciesName: new RegExp(searchinput, "gi") })
 
-  if (!searchinput) {
-    FishModel.find({}, "speciesIllustrationPhoto")
-      .then((fish) => {
-        res.render("main/searchresults.hbs", { fish });
-      })
-      .catch(() => {
-        next("find no fish");
-      });
-  } else {
-    FishModel.find({ speciesName: new RegExp(searchinput, "gi") })
+        .then((fish) => {
+          if (fish.length === 0) {
+            res.render("main/searchresults.hbs", {
+              error:
+                "Cannot find the fish, Pleae help us build our database by ",
+            });
 
-      .then((fish) => {
-        if (fish.length === 0) {
-          res.render("main/searchresults.hbs", {
-            error: "Cannot find the fish, Pleae help us build our database by ",
-          });
+            return;
+          }
 
-          return;
-        }
+          res.render("main/searchresults.hbs", { fish });
+        })
+        .catch(() => {
+          next("find no fish");
+        });
+    }
+  }
 
-        res.render("main/searchresults.hbs", { fish });
-      })
-      .catch(() => {
-        next("find no fish");
-      });
+  if (option === "Reciept") {
+    res.redirect("/profile");
   }
 });
 
-router.get("/createfish", loginCheck(), (req, res) => {
-  res.render("main/createfish.hbs");
-});
+router.get(
+  "/createfish",
+  loginCheck(),
 
-router.post("/createfish", (req, res, next) => {
-  const {
-    speciesIllustrationPhoto,
-    speciesName,
-    scientificName,
-    avalibility,
-    location,
-    biology,
-  } = req.body;
+  (req, res) => {
+    res.render("main/createfish.hbs");
+  }
+);
 
-  const fisher = req.session.loggedInUser._id;
-  FishModel.create({
-    speciesIllustrationPhoto,
-    speciesName,
-    scientificName,
-    avalibility,
-    location,
-    biology,
-    fisher,
-  })
-    .then(() => {
-      res.render("main/createfish.hbs");
+router.post(
+  "/createfish",
+  uploader.single("speciesIllustrationPhoto"),
+  (req, res, next) => {
+    const defaultFishImage =
+      "https://res.cloudinary.com/dtjxpedls/image/upload/v1625579445/uhqx9pvj5uzkrtnqp7fx.jpg";
+    let speciesIllustrationPhoto = req.file ? req.file.path : defaultFishImage;
+    const { speciesName, scientificName, avalibility, location, biology } =
+      req.body;
+
+    console.log(req.file);
+
+    const fisher = req.session.loggedInUser._id;
+    FishModel.create({
+      speciesIllustrationPhoto,
+      speciesName,
+      scientificName,
+      avalibility,
+      location,
+      biology,
+      fisher,
     })
-    .catch(() => {
-      next();
-    });
-});
+      .then(() => {
+        res.render("main/createfish.hbs");
+      })
+      .catch(() => {
+        next();
+      });
+  }
+);
 
 router.get("/fish/:id/edit", loginCheck(), (req, res) => {
   let id = req.params.id;
@@ -127,34 +143,35 @@ router.get("/fish/:id/edit", loginCheck(), (req, res) => {
     });
 });
 
-router.post("/fish/:id/edit", loginCheck(), (req, res, next) => {
-  let id = req.params.id;
+router.post(
+  "/fish/:id/edit",
+  loginCheck(),
+  uploader.single("speciesIllustrationPhoto"),
+  (req, res, next) => {
+    let id = req.params.id;
 
-  const {
-    speciesIllustrationPhoto,
-    speciesName,
-    scientificName,
-    avalibility,
-    location,
-    biology,
-  } = req.body;
+    const speciesIllustrationPhoto = req.file.path;
 
-  FishModel.findByIdAndUpdate(id, {
-    speciesIllustrationPhoto,
-    speciesName,
-    scientificName,
-    avalibility,
-    location,
-    biology,
-  })
-    .then(() => {
-      res.redirect("/profile");
+    const { speciesName, scientificName, avalibility, location, biology } =
+      req.body;
+
+    FishModel.findByIdAndUpdate(id, {
+      speciesIllustrationPhoto,
+      speciesName,
+      scientificName,
+      avalibility,
+      location,
+      biology,
     })
-    .catch((err) => {
-      console.log(err);
-      next("Edit failed");
-    });
-});
+      .then(() => {
+        res.redirect("/profile");
+      })
+      .catch((err) => {
+        console.log(err);
+        next("Edit failed");
+      });
+  }
+);
 
 router.post("/fish/:id/delete", (req, res, next) => {
   let id = req.params.id;
@@ -166,6 +183,10 @@ router.post("/fish/:id/delete", (req, res, next) => {
     .catch(() => {
       next("failed to delete");
     });
+});
+
+router.get("/generalinfo", (req, res, next) => {
+  res.render("./main/generalinfo.hbs");
 });
 
 module.exports = router;

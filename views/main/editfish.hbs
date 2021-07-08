@@ -1,34 +1,39 @@
-<h2>Edit fish</h2>
+<section>
+  <h2>Edit fish</h2>
 
 
-<form class="createfishform" method="POST" action="/fish/{{fish._id}}/edit">
+  <form class="createfishform" method="POST" action="/fish/{{fish._id}}/edit" enctype="multipart/form-data">
 
-  <div class="mb-3">
+    <div class="mb-3">
 
-    <label class="form-label">speciesIllustrationPhoto</label>
-    <input class="form-control" type="text" name="speciesIllustrationPhoto" value="{{fish.speciesIllustrationPhoto}}">
-    <br>
+      {{!-- <label class="form-label">speciesIllustrationPhoto</label>
+      <input class="form-control" type="text" name="speciesIllustrationPhoto" value="{{fish.speciesIllustrationPhoto}}">
+      <br> --}}
+      <input type="file" name="speciesIllustrationPhoto" accept="image/png, image/jpg">
+      <br>
 
-    <label class="form-label">Name</label>
-    <input class="form-control" type="text" name="speciesName" value="{{fish.speciesName}}">
-    <br>
+      <label class="form-label">Name</label>
+      <input class="form-control" type="text" name="speciesName" value="{{fish.speciesName}}">
+      <br>
 
-    <label class="form-label">Scientific Name</label>
-    <input class="form-control" type="text" name="scientificName" value="{{fish.scientificName}}">
-    <br>
+      <label class="form-label">Scientific Name</label>
+      <input class="form-control" type="text" name="scientificName" value="{{fish.scientificName}}">
+      <br>
 
-    <label class="form-label">Avalibility</label>
-    <input class="form-control" type="text" name="avalibility" value="{{fish.avalibility}}">
-    <br>
+      <label class="form-label">Avalibility</label>
+      <input class="form-control" type="text" name="avalibility" value="{{fish.avalibility}}">
+      <br>
 
 
-    <label class="form-label">Location</label>
-    <input class="form-control" type="text" name="location" value="{{fish.location}}">
-    <br>
-    <label class="form-label">Biology</label>
-    <input class="form-control" type="text" name="biology" value="{{fish.biology}}">
-    <br>
-    <button class="btn btn-primary" type="submit">SUBMIT</button>
+      <label class="form-label">Location</label>
+      <input class="form-control" type="text" name="location" value="{{fish.location}}">
+      <br>
+      <label class="form-label">Biology</label>
+      <input class="form-control" type="text" name="biology" value="{{fish.biology}}">
+      <br>
+      <button class="btn btn-primary" type="submit">SUBMIT</button>
 
-  </div>
-</form>
+    </div>
+  </form>
+
+</section>

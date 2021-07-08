@@ -6,32 +6,33 @@
 
 
 
-  <form class="createfishform" method="POST" action="/createfish">
+  <form class="createfishform" method="POST" action="/createfish" enctype="multipart/form-data">
 
-    <div class="mb-3">
-      <label class="form-label">Photo</label>
-      <input class="form-control" type="text" name="speciesIllustrationPhoto">
-      <br>
+    <input type="file" name="speciesIllustrationPhoto" accept="image/png, image/jpg">
+    <br>
+    <label class="form-label">Name</label>
+    <input class="form-control" type="text" name="speciesName">
+    <br>
+    <label class="form-label">Scientific Name</label>
+    <input class="form-control" type="text" name="scientificName">
+    <br>
+    <label class="form-label">Avalibility</label>
+    <input class="form-control" type="text" name="avalibility">
+    <br>
+    <label class="form-label">Location</label>
+    <input class="form-control" type="text" name="location">
+    <br>
+    <label class="form-label">Biology</label>
+    <input class="form-control" type="text" name="biology">
+    <br>
 
-      <label class="form-label">Name</label>
-      <input class="form-control" type="text" name="speciesName">
-      <br>
-      <label class="form-label">Scientific Name</label>
-      <input class="form-control" type="text" name="scientificName">
-      <br>
-      <label class="form-label">Avalibility</label>
-      <input class="form-control" type="text" name="avalibility">
-      <br>
-      <label class="form-label">Location</label>
-      <input class="form-control" type="text" name="location">
-      <br>
-      <label class="form-label">biology</label>
-      <input class="form-control" type="text" name="biology">
-      <br>
-
-      <button class="btn btn-primary" type="submit">SUBMIT</button>
+    <button class="btn btn-primary" type="submit">SUBMIT</button>
 
     </div>
   </form>
 
 </section>
+
+
+{{!--
+<script src="></script> --}}
