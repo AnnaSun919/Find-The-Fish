@@ -1,23 +1,37 @@
-<h1>Update the recipe details</h1>
+<section>
 
-<h3>Title: {{recipe.title}}</h3>
-
-<p>ingredients: {{recipe.ingredients}}</p>
-
-<p>instructions: {{recipe.instructions}}</p>
+    <div class="button" role="group" aria-label="Basic outlined example">
 
 
-<img src={{recipe.recipePic}}>
+        <div class="editanddeletebutton">
+            {{#if isCreator}}
+            <form action="/recipes/{{recipe._id}}/edit" method="GET">
+                <button type="submit" class="btn btn-warning">Edit</button>
+            </form>
+            <form action="/recipes/{{recipe._id}}/delete" method="POST">
+                <button class="btn btn-danger">Delete</button>
+            </form>
+            {{/if}}
+        </div>
+    </div>
 
-<br>
-<br>
+    <div class="profileContainer">
+        <div>
+            <img class="bigfishphoto" src="{{recipe.photo}}" alt="fish" />
+        </div>
+        <div class="info">
+            <p class="subtitle">Title : {{recipe.title}} </p>
 
-{{!-- The recipe._id will be a dynamic id to a single todo --}}
-<form action="/recipes/{{recipe._id}}/edit" method="GET">
-    <button type="submit" class="btn btn-warning">Edit</button>
-</form>
+            <p class="content">Ingredients: {{recipe.ingredients}}</p>
+            <p class="content">Instructions: {{recipe.instructions}}</p>
 
-{{!-- The recipe._id will be a dynamic id to a single todo --}}
-<form action="/recipes/{{recipe._id}}/delete" method="POST">
-    <button class="btn btn-danger">Delete</button>
-</form>
+
+
+            {{#if isCreatedbyUser}}
+            <p class="content">Information provided by : </p>
+            <p class="content2">{{recipe.creater.username}} </p>
+            {{/if}}
+        </div>
+    </div>
+
+</section>

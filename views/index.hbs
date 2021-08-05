@@ -15,17 +15,24 @@
         </a>
         {{/each}}
 
+
+
+    </div>
+    <p class="subtitle">Our Picks</p>
+    <div class="fishcontainer">
+
+
+        {{#each recipe}}
+        <a href="/recipes/{{this._id}}">
+            <img class="fishphoto" src="{{this.photo}}" alt="recipe" />
+        </a>
+        {{/each}}
+
+
+
     </div>
 
 </section>
 
 {{!-- <p class="subtitle">Top 5 Fish Recipes</p> --}}
-{{!-- <div class="recipepiccontainer">
-    {{#each recipe}}
-    <a href="/recipe/{{this._id}}">
-        <img class="recipephoto" src="{{this.recipePic}}" alt="ooops" />
-    </a>
-    {{/each}}
-</div> --}}
-
 <p>To know more, please <a href="/signup">Sign up</a></p>
