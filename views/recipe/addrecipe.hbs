@@ -1,29 +1,58 @@
-<h2>Add a seafood recipe</h2>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 
-<form class="addrecipeform" method="POST" action="/recipes" enctype="multipart/form-data">
+
+<section>
+
+
+    <h2>Add a seafood recipe</h2>
 
 
 
-    <input type="file" name="photo" accept="image/png, image/jpg">
-    <br>
+
+    <form class="createfishform" method="POST" action="/recipes" enctype="multipart/form-data">
+        <div class="form-group">
+            <input type="file" name="photo" accept="image/png, image/jpg">
+            <br>
+
+            <label class="form-label">Title</label>
+            <input class="form-control" type="text" name="title">
+            <br>
+
+            <div class="ingredient">
+                <label for="exampleFormControlTextarea1">Ingredients</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" name="ingredients"></textarea>
 
 
-    <div class="mb-3">
-        <label class="form-label">Title</label>
-        <input class="form-control" type="text" name="title">
-        <br>
+            </div>
+            <text id="btn1">+</text>
 
-        <label class="form-label">Ingredients</label>
-        <textarea rows="5" cols="60" name="ingredients">
-         </textarea><br>
 
-        <label class="form-label">Instructions</label>
-        <textarea rows="5" cols="60" name="instructions">
-         </textarea><br>
+            <div class="Instructions">
+                <label for="exampleFormControlTextarea1">Instructions</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="instructions"></textarea>
+                <br>
+            </div>
 
-        <br>
-        <button class="btn btn-primary" type="submit">SUBMIT</button>
 
-    </div>
-</form>
+
+            <button class="btn btn-primary" type="submit">SUBMIT</button>
+
+        </div>
+
+
+    </form>
+
+</section>
+
+
+
+
+<script>
+    $('#btn1').on('click', function () {
+        var r = $('<textarea class="form-control" id="exampleFormControlTextarea1" rows="1" name="ingredients"></textarea>');
+        $(".ingredient").append(r);
+    });
+</script>

@@ -78,6 +78,13 @@ h1 {
   font-weight: bold;
 }
 
+.recipecontainer{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 5px;
+}
 
 
 
@@ -113,7 +120,7 @@ form.fishsearch::after {
 }
 
 .authbutton {
-
+  text-decoration: none; 
   margin-left: 20px;
 
 

@@ -4,7 +4,7 @@ require("./User.model");
 const RecipeSchema = new Schema({
   photo: String,
   title: String,
-  ingredients: String,
+  ingredients: Array,
   instructions: String,
   creater: {
     ref: "User",

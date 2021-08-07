@@ -20,9 +20,13 @@
             <img class="bigfishphoto" src="{{recipe.photo}}" alt="fish" />
         </div>
         <div class="info">
-            <p class="subtitle">Title : {{recipe.title}} </p>
+            <p class="subtitle">{{recipe.title}} </p>
+            <p class="content">Ingredients: </p>
+            {{#each recipe.ingredients}}
 
-            <p class="content">Ingredients: {{recipe.ingredients}}</p>
+            <p class="content">{{this}}</p>
+            {{/each}}
+
             <p class="content">Instructions: {{recipe.instructions}}</p>
 
 

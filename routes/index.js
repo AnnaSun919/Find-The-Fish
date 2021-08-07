@@ -6,7 +6,7 @@ router.get("/", (req, res, next) => {
   FishModel.find({}, "speciesIllustrationPhoto")
     .limit(6)
     .then((fish) => {
-      return RecipeModel.find({}, "photo")
+      return RecipeModel.find({})
         .limit(6)
         .then((recipe) => {
           res.render("index", { recipe, fish });

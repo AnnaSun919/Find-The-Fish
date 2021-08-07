@@ -6,7 +6,7 @@
   {{#each fish }}
 
 
-  <a href="/fish/{{this._id}}">
+  <a href="/fish/{{this._id}}" style="text-decoration: none">
     <img class="fishphoto" src="{{this.speciesIllustrationPhoto}}" alt="">
   </a>
 
@@ -18,7 +18,8 @@
 
 
   <a href="/recipes/{{this._id}}">
-    <img class="recipephoto" src="{{this.recipePic}}" alt="">
+
+    <img class="fishphoto" src="{{this.photo}}" alt="">
   </a>
 
 

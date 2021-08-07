@@ -1,0 +1,18 @@
+<section>
+  <h1>Available Fish Information</h1>
+
+
+  <div class="fishcontainer"></div>
+  {{#each fish }}
+
+
+  <a href="/fish/{{this._id}}" style="text-decoration: none">
+    <img class="fishphoto" src="{{this.speciesIllustrationPhoto}}" alt="">
+  </a>
+
+
+
+  {{/each}}
+
+  </div>
+</section>>

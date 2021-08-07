@@ -15,6 +15,16 @@ const loginCheck = () => {
   };
 };
 
+router.get("/fish", (req, res, next) => {
+  FishModel.find()
+    .then((fish) => {
+      res.render("main/fish-list.hbs", { fish });
+    })
+    .catch((err) => {
+      next("Find failed");
+    });
+});
+
 //fish
 router.get("/fish/:id", (req, res, next) => {
   let id = req.params.id;
@@ -90,7 +100,7 @@ router.get("/search", (req, res, next) => {
 
   if (option === "Recipes") {
     if (!searchinput) {
-      RecipeModel.find({}, "recipePic")
+      RecipeModel.find({}, "photo")
         .then((recipe) => {
           res.render("main/searchresults.hbs", { recipe });
         })

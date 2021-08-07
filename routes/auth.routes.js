@@ -3,6 +3,7 @@ let bcrypt = require("bcryptjs");
 let UserModel = require("../models/User.model");
 let FishModel = require("../models/Fish.model");
 const uploader = require("../middlewares/cloudinary.config.js");
+let RecipeModel = require("../models/Recipe.model");
 
 /* GET home page */
 router.get("/login", (req, res, next) => {
@@ -83,17 +84,19 @@ router.get("/logout", (req, res, next) => {
   res.redirect("/");
 });
 
-router.get("/profile", (req, res, nex) => {
+router.get("/profile", (req, res, next) => {
   if ((req.app.locals.isLoggedIn = true)) {
     let id = req.session.loggedInUser._id;
     let user = req.session.loggedInUser;
 
     FishModel.find({ fisher: id })
       .then((fish) => {
-        res.render("main/profile.hbs", { user, fish });
+        return RecipeModel.find({}).then((recipe) => {
+          res.render("main/profile.hbs", { user, fish, recipe });
+        });
       })
       .catch((err) => {
-        next(err);
+        next("fish fetch failed: " + err);
       });
   } else {
     res.redirect("/login");
@@ -106,15 +109,14 @@ router.post("/upload", uploader.single("imageUrl"), (req, res, next) => {
     profilePic: req.file.path,
   })
     .then(() => {
-      UserModel.findByIdAndUpdate(req.session.loggedInUser._id)
-        .then((user) => {
-          req.session.loggedInUser = user;
-          console.log(user);
-          res.redirect("/profile");
-        })
-        // .then(() => {
-        //   // res.redirect("/profile");
-        // });
+      UserModel.findByIdAndUpdate(req.session.loggedInUser._id).then((user) => {
+        req.session.loggedInUser = user;
+        console.log(user);
+        res.redirect("/profile");
+      });
+      // .then(() => {
+      //   // res.redirect("/profile");
+      // });
     })
 
     .catch((err) => {
