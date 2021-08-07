@@ -192,6 +192,8 @@ router.post(
     const { speciesName, scientificName, avalibility, location, biology } =
       req.body;
 
+    console.log(speciesIllustrationPhoto);
+
     FishModel.findByIdAndUpdate(id, {
       speciesIllustrationPhoto,
       speciesName,

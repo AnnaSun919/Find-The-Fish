@@ -85,6 +85,8 @@ router.get("/recipes/:id/edit", (req, res, next) => {
 router.post("/recipes/:id/edit", (req, res, next) => {
   let dynamicRecipeId = req.params.id;
   const { title, ingredients, instructions } = req.body;
+  console.log("HI");
+  console.log(ingredients);
 
   RecipeModel.findByIdAndUpdate(dynamicRecipeId, {
     title,
