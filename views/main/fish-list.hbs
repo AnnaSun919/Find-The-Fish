@@ -2,17 +2,15 @@
   <h1>Available Fish Information</h1>
 
 
-  <div class="fishcontainer"></div>
-  {{#each fish }}
-
-
-  <a href="/fish/{{this._id}}" style="text-decoration: none">
-    <img class="fishphoto" src="{{this.speciesIllustrationPhoto}}" alt="">
-  </a>
-
-
-
-  {{/each}}
+  <div class="fishcontainer">
+    {{#each fish}}
+    <div id="card" class="fishphoto">
+      <a style=" text-decoration: none; color: black;" href="/fish/{{this._id}}">
+        <img class="fishphoto1" src="{{this.speciesIllustrationPhoto}}" alt="" />
+        <h5 class="card-title" style="margin: 10px;">{{this.speciesName}}</h5>
+      </a>
+    </div>
+    {{/each}}
 
   </div>
 </section>>

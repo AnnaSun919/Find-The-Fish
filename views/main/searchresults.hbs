@@ -2,29 +2,27 @@
   <h1>Search result</h1>
 
 
-  <div class="fishcontainer"></div>
-  {{#each fish }}
+  <div class="fishcontainer">
+    {{#each fish}}
+    <div id="card" class="fishphoto">
+      <a style=" text-decoration: none; color: black;" href="/fish/{{this._id}}">
+        <img class="fishphoto1" src="{{this.speciesIllustrationPhoto}}" alt="" />
+        <h5 class="card-title" style="margin: 10px;">{{this.speciesName}}</h5>
+      </a>
+    </div>
+    {{/each}}
+
+    {{#each recipe }}
 
 
-  <a href="/fish/{{this._id}}" style="text-decoration: none">
-    <img class="fishphoto" src="{{this.speciesIllustrationPhoto}}" alt="">
-  </a>
+    <a href="/recipes/{{this._id}}">
 
-
-
-  {{/each}}
-
-  {{#each recipe }}
-
-
-  <a href="/recipes/{{this._id}}">
-
-    <img class="fishphoto" src="{{this.photo}}" alt="">
-  </a>
+      <img class="fishphoto" src="{{this.photo}}" alt="">
+    </a>
 
 
 
-  {{/each}}
+    {{/each}}
 
   </div>
 

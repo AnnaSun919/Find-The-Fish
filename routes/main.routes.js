@@ -70,7 +70,7 @@ router.get("/search", (req, res, next) => {
   console.log(option);
   if (option === "Fish") {
     if (!searchinput) {
-      FishModel.find({}, "speciesIllustrationPhoto")
+      FishModel.find({})
         .then((fish) => {
           res.render("main/searchresults.hbs", { fish });
         })

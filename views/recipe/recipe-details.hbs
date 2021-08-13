@@ -9,7 +9,7 @@
                 <button id="btn2" class="btn btn-danger">Edit</button>
             </form>
 
-            <form action="/recipe/{{recipe._id}}/delete" method="POST">
+            <form action="/recipes/{{recipe._id}}/delete" method="POST">
                 <button id="btn1" class="btn btn-danger">Delete</button>
             </form>
             {{/if}}
@@ -28,13 +28,13 @@
             <li class="content">{{this}}</p>
                 {{/each}}
 
-                <p class="content">Instructions: {{recipe.instructions}}</p>
-
+                <p class="content">Instructions:</p>
+                <p class="content"> {{recipe.instructions}} </p>
 
 
                 {{#if isCreatedbyUser}}
                 <p class="content">Information provided by : </p>
-                <p class="content2">{{recipe.creater.username}} </p>
+                <p class="content">{{recipe.creater.username}} </p>
                 {{/if}}
         </div>
     </div>

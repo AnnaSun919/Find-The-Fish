@@ -1,8 +1,9 @@
 <section>
-  <h1>Hello {{user.username}},</h1>
+
   <div class="profileContainer1">
     <div class="profilePic">
       <img class="avatar" src="{{user.profilePic}}" alt="">
+      <h3>{{user.username}}</h3>
 
       <form class="profilephoto" method="POST" action="/upload" enctype="multipart/form-data">
         <input type="file" name="imageUrl" accept="image/png, image/jpg">
