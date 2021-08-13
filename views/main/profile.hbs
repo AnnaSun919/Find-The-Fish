@@ -1,11 +1,12 @@
 <section>
   <h1>Hello {{user.username}},</h1>
-  <div class="profileContainer">
-    <div>
-      <img class="profilepic" src="{{user.profilePic}}" alt="">
+  <div class="profileContainer1">
+    <div class="profilePic">
+      <img class="avatar" src="{{user.profilePic}}" alt="">
 
       <form class="profilephoto" method="POST" action="/upload" enctype="multipart/form-data">
         <input type="file" name="imageUrl" accept="image/png, image/jpg">
+
         <button type="submit">Submit</button>
       </form>
     </div>
@@ -26,8 +27,8 @@
         <div class="recipecontainer">
           {{#each recipe}}
           <div class="card" style="width: 17rem; height: 25rem; margin: 8px;">
-            <a href="/recipes/{{this._id}}">
-              <img class="card-img-top" src="{{this.photo}}" alt="recipe">
+            <a href="/recipes/{{this._id}}" style="text-decoration: none; color: black;">
+              <img class="card-img-top" id="recipepho" src="{{this.photo}}" alt="recipe">
               <div class="card-body">
                 <h5 class="card-title">{{this.title}}</h5>
               </div>

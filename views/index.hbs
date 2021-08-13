@@ -10,9 +10,12 @@
 
 
         {{#each fish}}
-        <a href="/fish/{{this._id}}">
-            <img class="fishphoto" src="{{this.speciesIllustrationPhoto}}" alt="" />
-        </a>
+        <div id="card" class="fishphoto">
+            <a style=" text-decoration: none; color: black;" href="/fish/{{this._id}}">
+                <img class="fishphoto1" src="{{this.speciesIllustrationPhoto}}" alt="" />
+                <h5 class="card-title" style="margin: 10px;">{{this.speciesName}}</h5>
+            </a>
+        </div>
         {{/each}}
 
 
@@ -23,11 +26,12 @@
 
 
         {{#each recipe}}
-        <div class="card" style="width: 17rem; height: 25rem;">
-            <a href="/recipes/{{this._id}}">
-                <img class="card-img-top" src="{{this.photo}}" alt="recipe">
+        <div class="card">
+            <a style=" text-decoration: none; color: black;" href="/recipes/{{this._id}}">
+                <img class="card-img-top" id="recipepho" src="{{this.photo}}" alt="recipe">
                 <div class="card-body">
                     <h5 class="card-title">{{this.title}}</h5>
+                    by {{this.creater.username}}
                 </div>
 
 

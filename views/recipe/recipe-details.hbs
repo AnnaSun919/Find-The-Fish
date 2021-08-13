@@ -6,10 +6,11 @@
         <div class="editanddeletebutton">
             {{#if isCreator}}
             <form action="/recipes/{{recipe._id}}/edit" method="GET">
-                <button type="submit" class="btn btn-warning">Edit</button>
+                <button id="btn2" class="btn btn-danger">Edit</button>
             </form>
-            <form action="/recipes/{{recipe._id}}/delete" method="POST">
-                <button class="btn btn-danger">Delete</button>
+
+            <form action="/recipe/{{recipe._id}}/delete" method="POST">
+                <button id="btn1" class="btn btn-danger">Delete</button>
             </form>
             {{/if}}
         </div>
@@ -17,24 +18,24 @@
 
     <div class="profileContainer">
         <div>
-            <img class="bigfishphoto" src="{{recipe.photo}}" alt="fish" />
+            <img id="recipepho" src="{{recipe.photo}}" alt="fish" />
         </div>
         <div class="info">
             <p class="subtitle">{{recipe.title}} </p>
             <p class="content">Ingredients: </p>
             {{#each recipe.ingredients}}
 
-            <p class="content">{{this}}</p>
-            {{/each}}
+            <li class="content">{{this}}</p>
+                {{/each}}
 
-            <p class="content">Instructions: {{recipe.instructions}}</p>
+                <p class="content">Instructions: {{recipe.instructions}}</p>
 
 
 
-            {{#if isCreatedbyUser}}
-            <p class="content">Information provided by : </p>
-            <p class="content2">{{recipe.creater.username}} </p>
-            {{/if}}
+                {{#if isCreatedbyUser}}
+                <p class="content">Information provided by : </p>
+                <p class="content2">{{recipe.creater.username}} </p>
+                {{/if}}
         </div>
     </div>
 
