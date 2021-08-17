@@ -1,13 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap');
+@import url('http://fonts.cdnfonts.com/css/romantic-lovely');
+@import url('https://fonts.googleapis.com/css2?family=Palette+Mosaic&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@200&family=Lora:ital@1&display=swap');
 * {
   margin: 0;
   padding: 0;
 }
 
+body {
+
+  font-family:   "Crimson Pro",sans-serif !important;
+}
 
 body {
-  font: 14px serif, sans-serif;
+  font: 18px  "Crimson Pro" !important;
   background-color: white;
 }
+
+/* .container{
+  font: 14px serif;
+  background-color: white;
+} */
 
 a {
   color: #00b7ff;
@@ -30,11 +44,20 @@ h1 {
   align-items: center;
 }
 
-.welcome {
-  font-size: 50px;
-  font-weight: bold;
+.aside {
   margin-left: 100px;
   color: rgba(214, 214, 214, 0.877);
+}
+
+.aside .title{
+  font-family:  'Romantic Lovely';
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.aside i{
+  font-size: 20px;
+  font-weight: normal;
 }
 
 .fishphoto {
