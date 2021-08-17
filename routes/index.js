@@ -8,7 +8,7 @@ router.get("/", (req, res, next) => {
     .then((fish) => {
       return RecipeModel.find({})
         .populate("creater")
-        .limit(6)
+        .limit(12)
         .then((recipe) => {
           res.render("index", { recipe, fish });
         });

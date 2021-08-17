@@ -3,17 +3,7 @@ let UserModel = require("../models/User.model");
 let FishModel = require("../models/Fish.model");
 let RecipeModel = require("../models/Recipe.model");
 const uploader = require("../middlewares/cloudinary.config.js");
-
-//check login function
-const loginCheck = () => {
-  return (req, res, next) => {
-    if (req.session.loggedInUser) {
-      next();
-    } else {
-      res.redirect("/login");
-    }
-  };
-};
+const { loginCheck } = require("../middlewares/helper");
 
 router.get("/fish", (req, res, next) => {
   FishModel.find()
@@ -100,7 +90,7 @@ router.get("/search", (req, res, next) => {
 
   if (option === "Recipes") {
     if (!searchinput) {
-      RecipeModel.find({}, "photo")
+      RecipeModel.find({})
         .then((recipe) => {
           res.render("main/searchresults.hbs", { recipe });
         })
@@ -212,7 +202,7 @@ router.post(
   }
 );
 
-router.post("/fish/:id/delete", (req, res, next) => {
+router.post("/fish/:id/delete", loginCheck(), (req, res, next) => {
   let id = req.params.id;
 
   FishModel.findByIdAndDelete(id)

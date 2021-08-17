@@ -3,6 +3,7 @@ const router = require("express").Router();
 // let FishModel = require("../models/Fish.model");
 const uploader = require("../middlewares/cloudinary.config.js");
 let RecipeModel = require("../models/Recipe.model");
+const { loginCheck } = require("../middlewares/helper");
 
 // GET home page
 router.get("/recipes", (req, res, next) => {
@@ -16,7 +17,7 @@ router.get("/recipes", (req, res, next) => {
 });
 
 // handling GET request to main/addrecipe
-router.get("/addrecipe", (req, res) => {
+router.get("/addrecipe", loginCheck(), (req, res) => {
   res.render("recipe/addrecipe.hbs");
 });
 
@@ -68,7 +69,7 @@ router.get("/recipes/:id", (req, res, next) => {
 });
 
 //Dynamic Update for form
-router.get("/recipes/:id/edit", (req, res, next) => {
+router.get("/recipes/:id/edit", loginCheck(), (req, res, next) => {
   let dynamicRecipeId = req.params.id;
 
   RecipeModel.findById(dynamicRecipeId)
@@ -82,7 +83,7 @@ router.get("/recipes/:id/edit", (req, res, next) => {
 });
 
 //Dynamic POST
-router.post("/recipes/:id/edit", (req, res, next) => {
+router.post("/recipes/:id/edit", loginCheck(), (req, res, next) => {
   let dynamicRecipeId = req.params.id;
   const { title, ingredients, instructions } = req.body;
   console.log("HI");
@@ -102,7 +103,7 @@ router.post("/recipes/:id/edit", (req, res, next) => {
 });
 
 //Deletes POST
-router.post("/recipes/:id/delete", (req, res, next) => {
+router.post("/recipes/:id/delete", loginCheck(), (req, res, next) => {
   //create variable for dynamic ID
   let dynamicRecipeId = req.params.id;
 
