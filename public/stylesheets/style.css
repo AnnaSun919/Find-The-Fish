@@ -184,12 +184,17 @@ form.fishsearch::after {
   .fishsearch1 {
     float: left;
     display: block;
-    width: 50%;
+    width: 45%;
   }
   .fishsearchoption {
     float: left;
-    width: 10%;
-  }}
+    width: 15%;
+  }
+  .fishsearchoption {
+    height: 5%;
+    float: left;
+  }
+}
 
 .fishsearchoption {
   height: 40px;
@@ -225,8 +230,15 @@ form.fishsearch::after {
 }
 
 .authbutton {
+  display: flex;
+  justify-content: right;
   margin-left: auto;
   margin-right: 10px;
+}
+
+.authbutton button{
+  margin: 0px 5px;
+
 }
 
 .profilepic {
@@ -411,3 +423,15 @@ footer {
   
 }
 
+#toggler{
+  float:right !important;
+}
+
+.navbar.navbar-expand-lg.navbar-light.bg-light{
+  text-align: left;
+}
+
+
+
+.navbar-toggler{ 
+  margin: 0 auto; }
