@@ -4,21 +4,23 @@
 
 
     <div class="fishcontainer">
-        {{#each recipe }}
 
-        <div class="card" style="width: 17rem; height: 25rem;">
-            <a href="/recipes/{{this._id}}" style="text-decoration: none; color: black;">
+
+        {{#each recipe}}
+        <div class="card">
+            <a style=" text-decoration: none; color: black;" href="/recipes/{{this._id}}">
                 <img class="card-img-top" id="recipepho" src="{{this.photo}}" alt="recipe">
                 <div class="card-body">
-                    <h5 class="card-title">{{this.title}}</h5>
+                    <h4 class="card-title">{{this.title}}</h4>
+
                 </div>
 
 
             </a>
         </div>
-
-
         {{/each}}
+
+
 
     </div>
 </section>

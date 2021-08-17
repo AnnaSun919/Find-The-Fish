@@ -60,6 +60,10 @@ h1 {
   font-weight: normal;
 }
 
+.nav{
+  margin-left: 10px;
+}
+
 .fishphoto {
   /* background-image: url(https://fendro.files.wordpress.com/2013/11/2013-11-01_c1_john-erlend_id02.jpg); */
   margin: 10px;
@@ -180,9 +184,7 @@ form.fishsearch::after {
   .fishsearch1 {
     float: left;
     display: block;
-
     width: 50%;
-
   }
   .fishsearchoption {
     float: left;
@@ -346,8 +348,8 @@ footer {
 
 
 #recipepho{
-  width: 15rem; 
-  height: 18rem;
+  width: 20rem; 
+  height: 23rem;
 
 }
 
@@ -361,8 +363,8 @@ footer {
 }
 
 .card{
-  width: 17rem; 
-  height: 25rem; 
+  width: 20rem; 
+  height: 32rem; 
   margin: 5px ;
   border: 0;
 }
@@ -384,17 +386,19 @@ footer {
   padding:9px 30px;
 	display:inline-block;
 	transition:all linear 0.15s;
+  cursor: pointer;
 
 }
 
 .tab-links li.active{
   border-bottom: 0.2rem solid rgb(155, 184, 223);
-  font-weight: bold
+  font-weight: bold;
 }
 
 .tab-links li:hover {
 	background:#a7cce5;
 	text-decoration:none;
+  cursor: pointer;
 }
 
 
@@ -406,3 +410,4 @@ footer {
 	display:block;
   
 }
+

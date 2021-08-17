@@ -103,7 +103,7 @@ router.get("/search", (req, res, next) => {
         .then((recipe) => {
           if (recipe.length === 0) {
             res.render("main/searchresults.hbs", {
-              error: "Oops, Cannot find the recipe.",
+              error2: "Oops, Cannot find the recipe. Please",
             });
 
             return;

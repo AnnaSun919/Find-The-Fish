@@ -1,6 +1,9 @@
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+{{!--
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script> --}}
+
 
 <section>
 
@@ -25,52 +28,72 @@
       <li rel="tab2">Recipes</li>
 
     </ul>
-  </div>
 
 
-  <div class="tab-content">
 
-    <div id="tab1" class="tab active">
-      <p>Your Fish</p>
+    <div class="tab-content">
 
-      <div class="recipecontainer">
-        {{#each fish}}
-        <a href="/fish/{{this._id}}">
-          <img class="fishphoto" src="{{this.speciesIllustrationPhoto}}" alt="">
-        </a>
-        {{/each }}
+      <div id="tab1" class="tab active">
+        <p>Your Fish</p>
 
-      </div>
-    </div>
-
-    <div id="tab2" class="tab">
-      <p>Your recipes</p>
-      <div class="recipecontainer">
-        {{#each recipe}}
-        <div class="card" style="width: 17rem; height: 25rem; margin: 8px;">
-          <a href="/recipes/{{this._id}}" style="text-decoration: none; color: black;">
-            <img class="card-img-top" id="recipepho" src="{{this.photo}}" alt="recipe">
-            <div class="card-body">
-              <h5 class="card-title">{{this.title}}</h5>
-            </div>
-
-
+        <div class="recipecontainer">
+          {{#each fish}}
+          <a href="/fish/{{this._id}}">
+            <img class="fishphoto" src="{{this.speciesIllustrationPhoto}}" alt="">
           </a>
+          {{/each }}
+
         </div>
-        {{/each }}
       </div>
 
+      <div id="tab2" class="tab">
+        <p>Your recipes</p>
+        <div class="fishcontainer">
+
+
+          {{#each recipe}}
+          <div class="card">
+            <a style=" text-decoration: none; color: black;" href="/recipes/{{this._id}}">
+              <img class="card-img-top" id="recipepho" src="{{this.photo}}" alt="recipe">
+              <div class="card-body">
+                <h4 class="card-title">{{this.title}}</h4>
+
+              </div>
+
+
+            </a>
+          </div>
+          {{/each}}
+
+
+
+        </div>
+
+      </div>
+
+
     </div>
-
-
   </div>
 </section>
+
+
+
+
+{{!-- $(this).addClass("active").siblings().removeClass("active"); --}}
 <script>
+
   $(function () {
-    $('.tab-links li').on('click', function (e) {
-      var currentAttrValue = $(this).attr('rel');
-      $('#' + currentAttrValue).show().siblings().hide();
-      $(this).addClass('active').siblings().removeClass('active')
+    $(".tab-links li").on("click", function (e) {
+      let $panel = $(this).closest(".tabs")
+      $panel.find(".tab-links li.active").removeClass("active");
+      $(this).addClass("active");
+
+      const currentAttrValue = $(this).attr("rel");
+      $("#" + currentAttrValue)
+        .show()
+        .siblings()
+        .hide();
+
       e.preventDefault();
     });
   });

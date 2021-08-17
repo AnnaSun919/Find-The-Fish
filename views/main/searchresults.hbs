@@ -30,8 +30,11 @@
   </div>
 
   {{#if error}}
-  <p class="error">{{error}}<a href="/createfish">Creating Fish</a></p>
-  <a href=""></a>
+  <p class="error">{{error}}<a href="/createfish">Adding new Fish info</a></p>
+  {{/if}}
+
+  {{#if error2}}
+  <p class="error2">{{error2}}<a href="/addrecipe"> Add recipe</a></p>
   {{/if}}
 
 </section>
