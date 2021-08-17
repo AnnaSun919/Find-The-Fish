@@ -230,7 +230,7 @@ form.fishsearch::after {
 
 section {
   margin-left: 50px;
-  min-height: 500px
+  min-height: 800px
 }
 
 
@@ -322,4 +322,44 @@ footer {
   height: 25rem; 
   margin: 5px ;
   border: 0;
+}
+
+
+.tabs {
+	width:100%;
+	display:inline-block;
+
+}
+
+
+.tab-links {
+  border-bottom: thick #32a1ce;
+}
+.tab-links li {
+	margin: 1px;
+	list-style:none;
+  padding:9px 30px;
+	display:inline-block;
+	transition:all linear 0.15s;
+
+}
+
+.tab-links li.active{
+  border-bottom: 0.2rem solid rgb(155, 184, 223);
+  font-weight: bold
+}
+
+.tab-links li:hover {
+	background:#a7cce5;
+	text-decoration:none;
+}
+
+
+.tab {
+	display:none;
+}
+
+.tab.active {
+	display:block;
+  
 }

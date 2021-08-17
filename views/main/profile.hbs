@@ -1,3 +1,9 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+
 <section>
 
   <div class="profileContainer1">
@@ -11,40 +17,63 @@
         <button type="submit">Submit</button>
       </form>
     </div>
-    <div>
 
-      <div class="infoContainer">
-        <p class="subtitle">Edit the fish you create</p>
-
-        <div class="recipecontainer">
-          {{#each fish}}
-          <a href="/fish/{{this._id}}">
-            <img class="fishphoto" src="{{this.speciesIllustrationPhoto}}" alt="">
-          </a>
-          {{/each }}
-
-        </div>
-        <p class="subtitle">Edit the reciepe you create</p>
-        <div class="recipecontainer">
-          {{#each recipe}}
-          <div class="card" style="width: 17rem; height: 25rem; margin: 8px;">
-            <a href="/recipes/{{this._id}}" style="text-decoration: none; color: black;">
-              <img class="card-img-top" id="recipepho" src="{{this.photo}}" alt="recipe">
-              <div class="card-body">
-                <h5 class="card-title">{{this.title}}</h5>
-              </div>
+  </div>
 
 
-            </a>
-          </div>
-          {{/each }}
-        </div>
+  <div class="tabs">
+    <ul class="tab-links">
+      <li class="active" rel="tab1">Fish</li>
+      <li rel="tab2">Recipes</li>
+
+    </ul>
+  </div>
 
 
+  <div class="tab-content">
 
+    <div id="tab1" class="tab active">
+      <p>Your Fish</p>
 
+      <div class="recipecontainer">
+        {{#each fish}}
+        <a href="/fish/{{this._id}}">
+          <img class="fishphoto" src="{{this.speciesIllustrationPhoto}}" alt="">
+        </a>
+        {{/each }}
 
       </div>
     </div>
+
+    <div id="tab2" class="tab">
+      <p>Your recipes</p>
+      <div class="recipecontainer">
+        {{#each recipe}}
+        <div class="card" style="width: 17rem; height: 25rem; margin: 8px;">
+          <a href="/recipes/{{this._id}}" style="text-decoration: none; color: black;">
+            <img class="card-img-top" id="recipepho" src="{{this.photo}}" alt="recipe">
+            <div class="card-body">
+              <h5 class="card-title">{{this.title}}</h5>
+            </div>
+
+
+          </a>
+        </div>
+        {{/each }}
+      </div>
+
+    </div>
+
+
   </div>
 </section>
+<script>
+  $(function () {
+    $('.tab-links li').on('click', function (e) {
+      var currentAttrValue = $(this).attr('rel');
+      $('#' + currentAttrValue).show().siblings().hide();
+      $(this).addClass('active').siblings().removeClass('active')
+      e.preventDefault();
+    });
+  });
+</script>
