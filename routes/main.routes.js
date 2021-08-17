@@ -5,6 +5,7 @@ let RecipeModel = require("../models/Recipe.model");
 const uploader = require("../middlewares/cloudinary.config.js");
 const { loginCheck } = require("../middlewares/helper");
 
+/* GET availabit fish info */
 router.get("/fish", (req, res, next) => {
   FishModel.find()
     .then((fish) => {
@@ -15,7 +16,7 @@ router.get("/fish", (req, res, next) => {
     });
 });
 
-//fish
+/* Dynamic get fish info*/
 router.get("/fish/:id", (req, res, next) => {
   let id = req.params.id;
 
@@ -32,32 +33,22 @@ router.get("/fish/:id", (req, res, next) => {
       } else if (fish.fisher._id.toString() === req.session.loggedInUser._id) {
         req.app.locals.isCreator = true;
         req.app.locals.isCreatedbyUser = true;
-        console.log("else if");
         res.render("main/fishdetails.hbs", { fish });
       } else {
         req.app.locals.isCreator = false;
         req.app.locals.isCreatedbyUser = true;
         res.render("main/fishdetails.hbs", { fish });
       }
-
-      // if (fish.fisher._id === userid) {
-      //   req.app.locals.isCreator = true;
-      //   res.render("main/fishdetails.hbs", { fish });
-      // } else {
-      //   res.render("main/fishdetails.hbs", { fish });
-      // }
     })
     .catch((err) => {
-      console.log(err);
       next("find no fish");
     });
 });
 
-//search bar
+///*handling get info with search bar
 router.get("/search", (req, res, next) => {
   let searchinput = req.query.searchthefish;
   const option = req.query.selection;
-  console.log(option);
   if (option === "Fish") {
     if (!searchinput) {
       FishModel.find({})
@@ -118,6 +109,7 @@ router.get("/search", (req, res, next) => {
   }
 });
 
+// handling GET request to add fish info
 router.get(
   "/createfish",
   loginCheck(),
@@ -127,6 +119,7 @@ router.get(
   }
 );
 
+// handling Post request to add fish info
 router.post(
   "/createfish",
   uploader.single("speciesIllustrationPhoto"),
@@ -136,8 +129,6 @@ router.post(
     let speciesIllustrationPhoto = req.file ? req.file.path : defaultFishImage;
     const { speciesName, scientificName, avalibility, location, biology } =
       req.body;
-
-    console.log(req.file);
 
     const fisher = req.session.loggedInUser._id;
     FishModel.create({
@@ -158,6 +149,7 @@ router.post(
   }
 );
 
+//Dynamic Get request to edit fish info
 router.get("/fish/:id/edit", loginCheck(), (req, res) => {
   let id = req.params.id;
 
@@ -170,6 +162,7 @@ router.get("/fish/:id/edit", loginCheck(), (req, res) => {
     });
 });
 
+//Dynamic Post request to edit fish info
 router.post(
   "/fish/:id/edit",
   loginCheck(),
@@ -178,11 +171,8 @@ router.post(
     let id = req.params.id;
 
     const speciesIllustrationPhoto = req.file.path;
-
     const { speciesName, scientificName, avalibility, location, biology } =
       req.body;
-
-    console.log(speciesIllustrationPhoto);
 
     FishModel.findByIdAndUpdate(id, {
       speciesIllustrationPhoto,
@@ -202,6 +192,7 @@ router.post(
   }
 );
 
+//Dynamic Post request to delete fish info
 router.post("/fish/:id/delete", loginCheck(), (req, res, next) => {
   let id = req.params.id;
 
@@ -214,6 +205,7 @@ router.post("/fish/:id/delete", loginCheck(), (req, res, next) => {
     });
 });
 
+//Get request to show general info
 router.get("/generalinfo", (req, res, next) => {
   res.render("./main/generalinfo.hbs");
 });

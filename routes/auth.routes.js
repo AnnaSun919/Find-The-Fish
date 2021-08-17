@@ -5,15 +5,17 @@ let FishModel = require("../models/Fish.model");
 const uploader = require("../middlewares/cloudinary.config.js");
 let RecipeModel = require("../models/Recipe.model");
 
-/* GET home page */
+/* GET login page */
 router.get("/login", (req, res, next) => {
   res.render("./auth/login.hbs");
 });
 
+/*Get signup page*/
 router.get("/signup", (req, res, next) => {
   res.render("./auth/signup.hbs");
 });
 
+/*Post signup page*/
 router.post("/signup", uploader.single("imagePath"), (req, res, next) => {
   const { username, password } = req.body;
 
@@ -48,6 +50,7 @@ router.post("/signup", uploader.single("imagePath"), (req, res, next) => {
     });
 });
 
+/*Post login page*/
 router.post("/login", (req, res, next) => {
   const { username, password } = req.body;
 
@@ -56,27 +59,24 @@ router.post("/login", (req, res, next) => {
       if (user) {
         let isValide = bcrypt.compareSync(password, user.password);
         if (isValide) {
-          console.log("11111111");
           req.session.loggedInUser = user;
           req.app.locals.isLoggedIn = true;
           res.redirect("/profile");
         } else {
-          console.log("22222222");
           res.render("./auth/login.hbs", {
             error: "Invalid password",
           });
         }
       } else {
-        console.log("33333333");
         res.render("./auth/login.hbs", { error: "No user" });
       }
     })
     .catch((err) => {
-      console.log("444444444");
       next(err);
     });
 });
 
+/*Post logout page*/
 router.get("/logout", (req, res, next) => {
   req.session.destroy();
 
@@ -84,6 +84,7 @@ router.get("/logout", (req, res, next) => {
   res.redirect("/");
 });
 
+/*Get profile page*/
 router.get("/profile", (req, res, next) => {
   if ((req.app.locals.isLoggedIn = true)) {
     let id = req.session.loggedInUser._id;
@@ -103,6 +104,7 @@ router.get("/profile", (req, res, next) => {
   }
 });
 
+/*Post upload User profile pic*/
 router.post("/upload", uploader.single("imageUrl"), (req, res, next) => {
   // the uploader.single() callback will send the file to cloudinary and get you and obj with the url in return
   UserModel.findByIdAndUpdate(req.session.loggedInUser._id, {
@@ -111,14 +113,9 @@ router.post("/upload", uploader.single("imageUrl"), (req, res, next) => {
     .then(() => {
       UserModel.findByIdAndUpdate(req.session.loggedInUser._id).then((user) => {
         req.session.loggedInUser = user;
-        console.log(user);
         res.redirect("/profile");
       });
-      // .then(() => {
-      //   // res.redirect("/profile");
-      // });
     })
-
     .catch((err) => {
       console.log(err);
     });

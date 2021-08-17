@@ -37,6 +37,7 @@ router.post("/recipes", uploader.single("photo"), (req, res, next) => {
     });
 });
 
+//Dynamic Get request to recipe
 router.get("/recipes/:id", (req, res, next) => {
   let dynamicRecipeId = req.params.id;
 
@@ -55,7 +56,7 @@ router.get("/recipes/:id", (req, res, next) => {
       ) {
         req.app.locals.isCreator = true;
         req.app.locals.isCreatedbyUser = true;
-        console.log("isCreatedbyUser");
+
         res.render("recipe/recipe-details.hbs", { recipe });
       } else {
         req.app.locals.isCreator = false;
@@ -82,12 +83,10 @@ router.get("/recipes/:id/edit", loginCheck(), (req, res, next) => {
     });
 });
 
-//Dynamic POST
+//Dynamic POST for editing recipe
 router.post("/recipes/:id/edit", loginCheck(), (req, res, next) => {
   let dynamicRecipeId = req.params.id;
   const { title, ingredients, instructions } = req.body;
-  console.log("HI");
-  console.log(ingredients);
 
   RecipeModel.findByIdAndUpdate(dynamicRecipeId, {
     title,
