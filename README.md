@@ -6,6 +6,8 @@
 
 Platform for marine life and seafood lovers
 
+This site was built using [herokuapp](https://find-the-fish.herokuapp.com/).
+
 <br><br>
 
 ## MVP Scope and User stories
@@ -65,17 +67,3 @@ Geo Location:
     speciesIllustrationPhoto: String,
     speciesName: String,
     Biology: String,
-
-# Links
-
-<br>
-
-## Trello
-
-https://trello.com/b/VnrYSQ3v/project-ii
-<br>
-
-## Whimsical
-
-https://whimsical.com/project-ii-workflow-NwWoZCZeB6RWtiMzDS1wfm
-<br>
