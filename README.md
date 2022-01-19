@@ -1,6 +1,6 @@
 ## Find the fish
 
-Platform for marine life and seafood lovers.  This site was built using [herokuapp](https://find-the-fish.herokuapp.com/). 
+Platform for marine life and seafood lovers.  
 <br>
 
 ## Deployment Link
