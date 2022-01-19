@@ -60,13 +60,13 @@ This Web Application is build with this API : https://www.fishwatch.gov/api/spec
 
     habitatImpacts: String,
     imageGallery: String,
-    Location: String,
-    Population: String,
+    location: String,
+    population: String,
     scientificName: String,
     speciesAliases: String,
     speciesIllustrationPhoto: String,
     speciesName: String,
-    Biology: String,
+    biology: String,
     
     
 ## Built with
