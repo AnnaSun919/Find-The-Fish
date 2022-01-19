@@ -9,9 +9,9 @@ Platform for marine life and seafood lovers.
 
 https://find-the-fish.herokuapp.com/
 
-Demo User Please use 
-Username: Chan
-Password: 123456Aa!
+Demo-User please use:  
+Username: Chan  
+Password: 123456Aa!  
 
 ## MVP Scope and User stories
 
